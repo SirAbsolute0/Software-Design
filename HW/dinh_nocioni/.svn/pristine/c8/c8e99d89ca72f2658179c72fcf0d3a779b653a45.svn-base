@@ -66,9 +66,3 @@ As we were developing an application for the team with a broad requirement, we d
 It could be said that our approach at the time was to follow the ideas of evolutionary design. Reversibility (rapid spotting and version control in our agile project) could have saved us a lot of time as our application suffered from entropy and refactoring was necessary on functions written in the first few days of development. 
 
 
-
-Total [10]: 10
-
-Please see https://www2.cs.uh.edu/~svenkat/spring2023sd/scores.pdf
-
-
