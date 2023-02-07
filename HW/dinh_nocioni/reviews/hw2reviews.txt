@@ -1,0 +1,71 @@
+[Reviewed 02/06/23 18:20 PM CET]
+synopsis: let's revisit a few parts
+
+details: 
+
+Diagram:
+
+Please remove 1 as that is the default for cardinality.
+
+Shaded diamond (composition) is the most restrictive and better to use unshaded diamond (aggregation) instead at this level of design.
+
+Let's show a clear separation of GUI from the logic.
+
+Since number of rows is 6, we can remove the field numRows and change 1..* to 6.
+
+Better not to hard code FAVOR so the design can be extended to use other words.
+
+Text:
+
+1.
+
+This part will change based on the clarity we bring to the design and the diagram.
+
+2.
+
+Please spellcheck.
+
+Let us discuss the reasons to choose a particular language. There are other languages that can be used, why specifically are we choosing this language? We should convey that here.
+
+3.
+
+What testing libraries we plan to use.
+
+------------------------------------------------------------------------------
+[Reviewed 02/05/23 09:58 AM CET]
+synopsis: let's restructure and bring in some details
+
+details: 
+
+Diagram:
+
+Let's use domain specific name instead of generic names for classes. The names should tell us what they stand for in the problem at hand.
+
+Let's show a good separation of between UI related classes and logic related.
+
+Please show the cardinality of relationships.
+
+Are all the relationships association only?
+
+Text:
+
+1.
+
+Let's start with a very short introductory paragraph about the program, summarizing what it is that we plan to work on.
+
+Then, let us provide reasoning for design decisions, why and then what.
+
+Before diving into what each class or groups of methods will be, let us given an overview of what things are, how they are related, and how that helps to solve the problem. Then we can discuss the details of each part. Think of this as describing the big picture and then the details. Please refer to the diagram when presenting the big picture.
+
+Please keep this part as independent of the specific programming language as possible, why keeping a language in mind, however.
+
+2.
+
+Let us discuss the reasons to choose a particular language. There are other languages that can be used, why specifically are we choosing this language? We should convey that here.
+
+3.
+
+In this part, let us discuss about how we plan to structure the code - directories, files. Also, what libraries we will use for the language we choose in part 2 and what testing libraries we plan to use.
+
+
+------------------------------------------------------------------------------

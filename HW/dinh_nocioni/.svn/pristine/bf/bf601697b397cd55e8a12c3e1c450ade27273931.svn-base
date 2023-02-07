@@ -52,18 +52,18 @@ The file is UML Diagram.pdf
 
 2. Discuss what language you would use.
 
-	We decided to choose Python to implement the Wordle game because my teammate and I agreed that we were both familiar with the language. Furthermore, it is an excellent choice for prototyping a game. Thanks to the language's simplicity and coding speed, getting a relatively simple game such as Wordle to be up and running in minimal time is much easier. 
+	We decided to choose Python as our language for the implementation of this Wordle game as it is an excellent choice for prototyping a game. Thanks to the language's simplicity and coding speed, it is much easier to get a relatively simple game such as Wordle to be up and running in minimal time. 
 
-	Python provides excellent flexible object orientation, easing the work of creating new objects and modifying existing ones. The language is also dynamic typing, reducing the time of having to declare variables ahead, saving time and hassle. Dynamic typing provides excellent flexibility for faster prototyping and testing, which is what we want in this assignment.
+	Python provides great flexible object orientation which ease the work of creating new objects and modifying existing objects. The language is also dynamic typing which reduce the time of having to declare variables ahead, saving time and hassle. Dynamic typing provides great flexibity for faster prototying and testing which is what we want in this assignment.
 
-	Furthermore, Python also has excellent game development libraries such as Pygame. The library provides great flexibility in designing a beautiful front end and can handle key events well to help maintain our game loop. 
+	Furthermore, Python also has excellent game development libraries such as Pygame. The libary not only provide great flexibility in terms of designing a beautiful front-end but also can handle key events well to help maintain our game loop. 
 
 	We can also utilize objects to represent the rows allowing us to scale the number of guesses with minimal cost. We can also take advantage of the PyGame library to help us handle the key presses and maintain our program in a waiting state while we are reading a key. 
 
+
 3. How do you plan to structure the program, what libraries would you use?
 
-	Since we are planning to create a Wordle game in Python, we will be adding Python libraries that support the creation of a front-end application as well as support autonomous unit testing for the game. Specifically, we will use Pygame as our front-end library and Pytest for unit testing. We chose Pygame because of its broad support of game types and easy integration with Python. For example, Pygame supports many game types, from 2D board games to 3D first-person shooters; thus, it also has a pre-built API for our Wordle 2D board game. The API speeds up the process of creating a theme, creating buttons, and creating error handlers which are extremely useful during game development.
+	If the plan was to design a game without colorful front-end, we won't have to utilize Pygame, if the plan was to design with front-end, then we will include Pygame. Furthermore, we will probably bring in Numpy library to ease the usage of 2D arrays for the game board. Since the base game currently only have one correct answer which is "FAVOR", we will set it to a variable. Everytime the player type in 5 chars into the empty row, we will check to see how many chars are correct compared to the word "FAVOR". 
 
-	Similarly, we chose Pytest because of its seamless integration with Python. Since Wordle does not have many conditions that can break the game, we can include 5-6 test cases that can catch all, if not most, possible errors. Some test cases are special characters, non-valid words, and blank. With these test cases in Pytest, the unit testing should autonomously detect whether the program is operating as intended.
- 
-	Our Wordle Interface object will maintain the main game loop as it retrieves key presses from the UI Controller and sends them to the appropriate row object based on the "attempts" iterator (starting at 0). 	
+	Our Wordle Interface object will maintain the main game loop as it retrieves key presses from the UI Controller and sends them to the appropriate row object based on the "attempts" iterator (starting at 0). 
+	
