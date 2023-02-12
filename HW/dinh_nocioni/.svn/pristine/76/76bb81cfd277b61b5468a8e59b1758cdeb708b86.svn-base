@@ -34,7 +34,7 @@ Feel free to ask for frequent reviews.
 
 Include a separate file (may be a scan of hand drawn picture if you like, or a pdf, tiff, word document, etc.) which shows a UML diagram of your design. Refer to that diagram from the text description you write here.
 
-The file is UML Diagram2.pdf. 
+The file is UML Diagram.pdf and UML Diagram2.pdf. We currently have two intepertations of the UML Diagram and would like to know which one would be more suitable.
 
 1. How would you design this program? 
 
@@ -47,13 +47,6 @@ The file is UML Diagram2.pdf.
 	The Row class is the data structure which stores the characters for the guess; It contains a list of the letters in the row. The functions AddLetter() will receive an integer value from the Wordle Logic's processInput() function and append the character value of the ASCII int to the letters list. This class also contains getters for these two variables which are used by the logic to proceed to the next row when all 5 letters have been sent. 
 	
 	The validation of the letters will be done from inside the GetKey() function in the GUI class, we do not want to send any invalid inputs to the classes that drive the logic of the game (Wordle Logic & Row class). As such, the function will loop until a correct key input was detected. PyGame will help us with this loop as it will send the application into a waiting state as it reads more key presses. ShowRowColors() takes as the output of FinishRow() as a parameter and prints the colored boxes of the row to the screen as necessary (decoded as 0, 1, or 2 based on the color codes). The guess function will work in tandem with the Wordle Logic's FinishRow() function such that the current row becomes inactive and the attempts iterator is incremented until attempts is equal to 6 or the word has been guessed correctly (same as our result variable).
-
-(UML_Diagram_2)
-	In our second design of the Wordle application, we removed the Row object and are storing the characters in a list variable of 6 strings. We refactored the finishRow function to simply be submitRow(), it will take the current row from the attempts variable (which acts as our iterator for the currently active row), and returns a list of integers to be used as the color codes in the GUI class (after comparing the letters and their positions in the string).
-
-	The processInput function in the logic class will now check how many characters are in the current row's string and append the string with the input or ignore it based on whether the length of our string is 6 or not.
-
-	Every time the user presses the submit button, the submitRow() function from the logic class is called. Although, in the case that the program is used in a command line this would simply be a 'submit' command, thus we ensure that the aggregation relationship still exists between both the GUI and Logic class such that the GUI requires the Logic but not vice versa.
 
 2. Discuss what language you would use.
 
