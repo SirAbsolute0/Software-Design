@@ -18,5 +18,8 @@ xtally for target SKILL guess SILLY
 xtally for target SKILL guess SLICE
 
 xplay first attempt with winning guess
-xplay first attempt with invalid guess
-xplay first attempt with non-winning guess
+xplay second attempt with winning guess
+xplay third attempt with winning guess
+xplay sixth attempt with winning guess
+xplay third attempt with losing guess
+xplay sixth attempt with losing guess

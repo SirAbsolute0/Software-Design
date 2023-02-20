@@ -1,0 +1,34 @@
+import enum
+
+class Match(enum.Enum):
+  EXACT = "EXACT"
+  EXISTS = "EXISTS"
+  NO_MATCH = "NO_MATCH"
+
+def findExact(target, guess):
+  
+  if target == guess:
+    return Match.EXACT
+  
+  return Match.NO_MATCH
+
+def tally(target, guess):
+
+  if(len(guess) != 5):
+    raise ValueError("Incorrect Size")  
+
+  response = list(map(findExact, target, guess))
+  
+  remainder = [i for i, m in zip(target, response) if m != Match.EXACT]
+
+  return [Match.EXISTS if i == None else i for i in
+         [remainder.remove(g) if g in remainder and r == Match.NO_MATCH else r
+          for g, r in zip(guess, response)]]
+
+print(tally("FAVOR", "RAPID"))
+
+#Feedback: in the code below we are modifying the parameter given to a function or variables outside of its scope.
+#That is generally not a good practice. Also, it will be nice to use functional style instead of imperative style.
+
+#Take a stab, as a team, to refactor the code. Let both of you spend about 2 hours max. If you have no clue
+#how to refactor to achieve the above goals, drop an email asking for help from Venkat.

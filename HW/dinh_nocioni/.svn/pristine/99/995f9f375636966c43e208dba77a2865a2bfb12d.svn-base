@@ -1,0 +1,29 @@
+import unittest
+
+from src.wordle import Wordle
+
+class WordleTests(unittest.TestCase):
+  def test_canary(self):
+    self.assertTrue(True)
+
+  def test_submitRow(self):
+    #0 = Not in target
+    #1 = Wrong position
+    #2 = Correct position
+
+    codeTests = [[[2, 2, 2, 2, 2], "FAVOR"],
+                 [[0, 0, 0, 0, 0], "TESTS"],
+                 [[1, 2, 0, 0, 0], "RAPID"],
+                 [[0, 2, 0, 2, 2], "MAYOR"]]
+    
+    for test in codeTests:
+      code, guess = test
+      with self.subTest():
+        self.assertEqual(code, Wordle().tally("FAVOR", guess))
+      
+    
+
+    
+
+if __name__ == '__main__': 
+  unittest.main()

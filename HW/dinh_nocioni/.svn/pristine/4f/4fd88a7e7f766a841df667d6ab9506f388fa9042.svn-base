@@ -1,0 +1,101 @@
+#Functional approach
+import enum
+
+class Match(enum.Enum):
+  EXACT = "EXACT"
+  EXISTS = "EXISTS"
+  NO_MATCH = "NO_MATCH"
+  
+def tally(target, guess):
+    if len(guess) != len(target):
+        raise ValueError("Incorrect Size")
+        
+    result = []
+    for position in range(len(target)):
+        result.append(tallyForPosition(position, target, guess))
+    
+    return result
+
+def tallyForPosition(position, target, guess):
+    if target[position] == guess[position]:
+        return Match.EXACT
+    
+    letterAtPosition = guess[position]
+    
+    positionalMatches = countPositionalMatches(target, guess, letterAtPosition)
+    nonPositionalOccurrencesInTarget = countNumberOfOccurrenceeUntilPosition(len(target) - 1, target, letterAtPosition) - positionalMatches
+    numberOfOccurancesInGuessUntilPosition = countNumberOfOccurrenceeUntilPosition(position, guess, letterAtPosition)
+    
+    if nonPositionalOccurrencesInTarget >= numberOfOccurancesInGuessUntilPosition:
+        return Match.EXISTS
+    
+    return Match.NO_MATCH
+
+def countPositionalMatches(target, guess, letter):
+    matches = []
+    for i in range(len(target)):
+        if guess[i] in target[i]:
+            matches.append(guess[i])
+    
+    return matches.count(letter)
+    
+def countNumberOfOccurrenceeUntilPosition(position, word, letter):
+    matches = 0
+    for i in range(position + 1):
+        if letter == word[i]:
+            matches += 1
+    return matches
+
+
+# Imperative Style
+# =============================================================================
+# import enum
+# 
+# class Match(enum.Enum):
+#   EXACT = "EXACT"
+#   EXISTS = "EXISTS"
+#   NO_MATCH = "NO_MATCH"
+# 
+# def findExists(target, guess):
+# 
+#   indexes = list()
+#   
+#   for i in range(5):
+#     if(guess[i] == ' '):
+#       continue
+#     if(guess[i] in target):
+#       target[target.index(guess[i])] = ' '
+#       indexes.append(i)
+# 
+#   return indexes
+# 
+# 
+# def tally(target, guess):
+# 
+#   if(len(guess) != 5):
+#     raise ValueError("Incorrect Size")  
+# 
+#   target = list(target)
+#   guess = list(guess)
+#   response = [Match.NO_MATCH] * 5
+#   
+#   for i in range(5):
+#       
+#     if(guess[i] == target[i]):
+#       response[i] = Match.EXACT
+#       target[i] = ' '
+#       guess[i] = ' '
+#       
+# 
+#   for i in findExists(target, guess):    
+#     response[i] = Match.EXISTS
+# 
+# 
+#       
+#   return response
+# =============================================================================
+
+
+
+print(tally("FAVOR", "RAPID"))
+

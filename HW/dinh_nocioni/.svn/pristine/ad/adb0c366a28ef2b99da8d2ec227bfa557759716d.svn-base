@@ -1,0 +1,5 @@
+Please replace this with a list of tests
+-test1: Validation check for non char input (i.e: special characters, numbers, etc).
+
+-test2: Game logic test in which we will test how the game respond to char being: not in the word, in the word but wrong position, and in the word and in the right position.
+...

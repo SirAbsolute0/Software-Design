@@ -1,0 +1,14 @@
+class Wordle: 
+  
+  def tally(self, target, guess): 
+    charCodes = list()
+    for i in range(len(guess)):
+      if(guess[i] in target):
+        if(guess[i] == target[i]):
+          charCodes.append(2) 
+        else:
+          charCodes.append(1) 
+      else:
+        charCodes.append(0) 
+    
+    return charCodes

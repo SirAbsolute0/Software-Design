@@ -1,0 +1,63 @@
+import unittest
+
+from src.wordle import tally, message, Match
+
+EXACT = Match.EXACT
+EXISTS = Match.EXISTS
+NO_MATCH = Match.NO_MATCH
+
+class WordleTests(unittest.TestCase):
+  
+  def test_canary(self):
+    self.assertTrue(True)
+
+  def test_tally(self):
+
+    responses = [[[EXACT,    EXACT,    EXACT,    EXACT,    EXACT],    "FAVOR"],
+                 [[NO_MATCH, NO_MATCH, NO_MATCH, NO_MATCH, NO_MATCH], "TESTS"],
+                 [[EXISTS,   EXACT,    NO_MATCH, NO_MATCH, NO_MATCH], "RAPID"],
+                 [[NO_MATCH, EXACT,    NO_MATCH, EXACT,    EXACT],    "MAYOR"],
+                 [[NO_MATCH, NO_MATCH, EXACT,    NO_MATCH, EXACT],    "RIVER"],               
+                 [[EXISTS,   NO_MATCH, NO_MATCH, NO_MATCH, NO_MATCH], "AMAST"]]
+    
+    for test in responses:
+      response, guess = test
+      with self.subTest():
+        self.assertEqual(response, tally("FAVOR", guess))
+
+    responses = [[[EXACT,    EXACT,    EXACT,    EXACT,    EXACT],    "SKILL"],
+                 [[EXACT,    NO_MATCH, EXACT,    NO_MATCH, EXACT],    "SWIRL"],
+                 [[NO_MATCH, EXISTS,   NO_MATCH, NO_MATCH, EXACT],    "CIVIL"],
+                 [[EXACT,    NO_MATCH, EXACT,    NO_MATCH, NO_MATCH], "SHIMS"],
+                 [[EXACT,    EXISTS,   EXISTS,   EXACT,    NO_MATCH], "SILLY"],
+                 [[EXACT,    EXISTS,   EXACT,    NO_MATCH, NO_MATCH], "SLICE"]]
+
+    for test in responses:
+      response, guess = test
+      with self.subTest():
+        self.assertEqual(response, tally("SKILL", guess))
+
+  def test_submitRow_valueExceptions(self):
+    responses = [[ValueError, "FOR"],
+                 [ValueError, "FERVER"]]
+
+    for test in responses:
+      response, guess = test
+      with self.assertRaises(response):
+        tally("FAVOR", guess)
+
+#Feedback: let's remove the following
+  def test_message(self):
+
+    responses = [["Awesome", ["AMAST", "RIVER", "FAVOR"]],
+                 ["It was FAVOR, better luck next time", ["AMAST", "RIVER", "MAYOR"]]]
+
+    for test in responses:
+      response, guess = test
+      with self.subTest():
+        self.assertEqual(response, message("FAVOR", guess))
+
+    
+      
+if __name__ == '__main__': 
+  unittest.main()

@@ -1,0 +1,21 @@
+import unittest
+
+from src.wordle import Wordle
+
+class WordleTests(unittest.TestCase):
+  def test_canary(self):
+    self.assertTrue(True)
+
+  def test_submitRow(self):
+    #Feedback: what are 2, 0, 1? That is cognitive load to decipher, new developers will also have no clue.
+    #we should make the code reveal intentions. Let's change the return to make this highly expressive.
+    self.assertEqual([2, 2, 2, 2, 2], Wordle().submitRow("FAVOR"))
+    self.assertEqual([0, 0, 0, 0, 0], Wordle().submitRow("TESTS"))
+    self.assertEqual([1, 2, 0, 0, 0], Wordle().submitRow("RAPID"))
+    self.assertEqual([0, 2, 0, 2, 2], Wordle().submitRow("MAYOR"))
+
+#Feedback: we should not put multiple independent asserts into one test like this.
+#instead, please use the facility of parameterized tests
+
+if __name__ == '__main__': 
+  unittest.main()

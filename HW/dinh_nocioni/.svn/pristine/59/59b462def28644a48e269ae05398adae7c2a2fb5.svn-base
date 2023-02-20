@@ -1,0 +1,16 @@
+[Reviewed 02/12/23 04:19 AM MST]
+synopsis~: let's start with a canary test
+
+details: 
+
+Let's start with a canary test - assert true is true.
+
+Please write code in appropriate files with proper language baed extensions.
+
+In tests.txt only list the tests, one line at a time. No code, no additional details in that file.
+
+Let us write the canary test and may be one more test, minimum code for that one test, and then do a quick review.
+
+Let's do a quick review after these changes. Please modify the requestReview.txt file and check it in as soon as you are ready and I will do a review well before the next scheduled review cycle.
+
+------------------------------------------------------------------------------

@@ -1,0 +1,54 @@
+import unittest
+
+from src.wordle import tally, Match
+
+EXACT = Match.EXACT
+EXISTS = Match.EXISTS
+NO_MATCH = Match.NO_MATCH
+
+class WordleTests(unittest.TestCase):
+  
+  def test_canary(self):
+    self.assertTrue(True)
+
+  def test_submitRow(self):
+
+    responses = [[[EXACT,    EXACT,    EXACT,    EXACT,    EXACT],    "FAVOR"],
+                 [[NO_MATCH, NO_MATCH, NO_MATCH, NO_MATCH, NO_MATCH], "TESTS"],
+                 [[EXISTS,   EXACT,    NO_MATCH, NO_MATCH, NO_MATCH], "RAPID"],
+                 [[NO_MATCH, EXACT,    NO_MATCH, EXACT,    EXACT],    "MAYOR"],
+                 [[EXISTS,   NO_MATCH, EXACT,    NO_MATCH, EXACT],    "RIVER"],
+                 #Feedback: should be [NO_MATCH, NO_MATCH, EXACT, NO_MATCH, EXACT]                 
+                 [[EXISTS,   NO_MATCH, EXISTS,   NO_MATCH, NO_MATCH], "AMAST"]]
+                 #Feedback: should be ['FAVOR', 'AMAST', [EXISTS, NO_MATCH, NO_MATCH, NO_MATCH, NO_MATCH]
+    
+    for test in responses:
+      response, guess = test
+      with self.subTest():
+        self.assertEqual(response, tally("FAVOR", guess))
+
+    responses = [[[EXACT,    EXACT,    EXACT,    EXACT,    EXACT],    "SKILL"],
+                 [[EXACT,    NO_MATCH, EXACT,    NO_MATCH, EXACT],    "SWIRL"],
+                 [[NO_MATCH, EXISTS,   NO_MATCH, EXISTS,   EXACT],    "CIVIL"],
+                 #Feedback: [NO_MATCH, EXISTS, NO_MATCH, NO_MATCH, EXACT]
+                 [[EXACT,    NO_MATCH, EXACT,    NO_MATCH, EXISTS],   "SHIMS"],
+                 #Feedback: [EXACT, NO_MATCH, EXACT, NO_MATCH, NO_MATCH]                 
+                 [[EXACT,    EXISTS,   EXISTS,   EXACT,    NO_MATCH], "SILLY"],
+                 [[EXACT,    EXISTS,   EXACT,    NO_MATCH, NO_MATCH], "SLICE"]]
+
+    for test in responses:
+      response, guess = test
+      with self.subTest():
+        self.assertEqual(response, tally("SKILL", guess))
+
+  def test_submitRow_valueExceptions(self):
+    responses = [[ValueError, "FOR"],
+                 [ValueError, "FERVER"]]
+
+    for test in responses:
+      response, guess = test
+      with self.assertRaises(response):
+        tally("FAVOR", guess)
+      
+if __name__ == '__main__': 
+  unittest.main()
