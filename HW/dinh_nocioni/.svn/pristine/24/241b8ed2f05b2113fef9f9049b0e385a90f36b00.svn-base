@@ -1,0 +1,31 @@
+import pygame
+
+pygame.init()
+WIDTH = 688
+HEIGHT = 900
+    
+GREEN = "#6aaa64"
+YELLOW = "#c9b458"
+GREY = "#787c7e"
+    
+GUESSED_LETTER_FONT = pygame.font.Font("UIAssets/FreeSansBold.otf", 50)
+AVAILABLE_LETTER_FONT = pygame.font.Font("UIAssets/FreeSansBold.otf", 25)
+
+def displayBoard():
+    pygame.display.set_caption("WORDLE")
+    SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
+    SCREEN.fill("white")
+
+    
+def main():
+    displayBoard()
+    
+    while True:
+        for e in pygame.event.get():
+            if e.type == pygame.QUIT:
+                return
+            pygame.display.update()
+
+if __name__ == '__main__':
+    main()
+    pygame.quit()

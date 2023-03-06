@@ -1,0 +1,70 @@
+import pygame
+
+pygame.init()
+
+WIDTH = 568
+HEIGHT = 668
+MARGIN = 10
+TOP_MARGIN = 100
+BOTTOM_MARGIN = 100
+LR_MARGIN = 100
+SQ_SIZE = (WIDTH - 4 * MARGIN - 2 * LR_MARGIN)//5
+
+GREEN = "#6aaa64"
+YELLOW = "#c9b458"
+GREY = "#787c7e"
+OUTLINE = "#d3d6da"
+FILLED_OUTLINE = "#878a8c"
+
+GUESSED_LETTER_FONT = pygame.font.Font("UIAssets/FreeSansBold.otf", 50)
+AVAILABLE_LETTER_FONT = pygame.font.Font("UIAssets/FreeSansBold.otf", 25)
+    
+pygame.display.set_caption("WORDLE")
+SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
+SCREEN.fill("white")
+
+if __name__ == '__main__':
+        guess = []
+        INPUT = ""
+        while True:
+            
+            y = TOP_MARGIN
+            for i in range(6):
+                x = LR_MARGIN
+                for j in range(5):
+                    square = pygame.Rect(x, y, SQ_SIZE, SQ_SIZE)
+                    pygame.draw.rect(SCREEN, GREY, square, width = 2)
+                    
+                    if i < len(guess):
+                        color = GREY
+                        pygame.draw.rect(SCREEN, GREY, square)
+                        letter = GUESSED_LETTER_FONT.render(guess[i][j], False, (255, 255, 255))
+                        surface = letter.get_rect(center = (x + SQ_SIZE//2, y + SQ_SIZE//2))
+                        SCREEN.blit(letter, surface)
+                        
+                    if i == len(guess) and j < len(INPUT):
+                        letter = GUESSED_LETTER_FONT.render(INPUT[j], False, GREY)
+                        surface = letter.get_rect(center = (x + SQ_SIZE//2, y + SQ_SIZE//2))
+                        SCREEN.blit(letter, surface)
+                    x += SQ_SIZE + MARGIN
+                y += SQ_SIZE + MARGIN
+                
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_BACKSPACE:
+                        INPUT = INPUT[:-1]
+                        
+                    elif event.key == pygame.K_RETURN:
+                        if len(INPUT) == 5:
+                            guess.append(INPUT)
+                            INPUT = ""
+                    else:
+                        if len(guess) < 6:
+                            INPUT += event.unicode.upper()
+                            
+            
+            pygame.display.flip()
+            print(guess)

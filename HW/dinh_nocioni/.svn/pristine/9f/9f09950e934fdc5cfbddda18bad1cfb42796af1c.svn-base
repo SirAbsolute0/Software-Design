@@ -1,0 +1,82 @@
+import pygame
+import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+pygame.init()
+
+ROWS = 6
+COLUMNS = 5
+
+WIDTH = 568
+HEIGHT = 668
+MARGIN = 10
+TOP_MARGIN = 100
+BOTTOM_MARGIN = 100
+LR_MARGIN = 100
+SQ_SIZE = (WIDTH - 4 * MARGIN - 2 * LR_MARGIN)//5
+
+GREEN = "#6aaa64"
+YELLOW = "#c9b458"
+GREY = "#787c7e"
+FONT = pygame.font.Font("UIAssets/FreeSansBold.otf", 50)
+    
+pygame.display.set_caption("WORDLE")
+SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
+
+def inputHandler(guesses, userInput):
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+        
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_BACKSPACE:
+                if len(userInput) > 0:
+                    deleteTyping(userInput)
+                
+            elif event.key == pygame.K_RETURN:
+                if len(userInput) == COLUMNS:
+                    guesses.append(userInput)
+                    userInput = ""
+            else:
+                if len(userInput) < COLUMNS:
+                    userInput += event.unicode.upper()
+                    
+    return guesses, userInput
+
+def displayGuess(guesses):
+    pygame.draw.rect(SCREEN, GREY, square)
+    letter = FONT.render(guesses[i][j], False, (255, 255, 255))
+    surface = letter.get_rect(center = (x + SQ_SIZE//2, y + SQ_SIZE//2))
+    SCREEN.blit(letter, surface)
+    
+def displayTyping(userInput):
+    letter = FONT.render(userInput[j], False, GREY)
+    surface = letter.get_rect(center = (x + SQ_SIZE//2, y + SQ_SIZE//2))
+    SCREEN.blit(letter, surface)
+    
+def deleteTyping(userInput):
+    userInput = userInput[:len(userInput) - 1]
+    
+if __name__ == '__main__':
+        guesses = []
+        userInput = ""
+        
+        while True:
+            SCREEN.fill("white")
+            y = TOP_MARGIN
+            for i in range(ROWS):
+                x = LR_MARGIN
+                for j in range(COLUMNS):
+                    square = pygame.Rect(x, y, SQ_SIZE, SQ_SIZE)
+                    pygame.draw.rect(SCREEN, GREY, square, width = 2)
+                    if i < len(guesses):
+                        displayGuess(guesses)
+                    
+                    if i == len(guesses) and j < len(userInput):
+                        displayTyping(userInput)
+                        
+                    x += SQ_SIZE + MARGIN
+                y += SQ_SIZE + MARGIN
+
+            guesses, userInput = inputHandler(guesses, userInput)
+            pygame.display.flip()

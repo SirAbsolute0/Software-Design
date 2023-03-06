@@ -1,0 +1,70 @@
+import pygame
+import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+pygame.init()
+
+ROWS = 6
+COLUMNS = 5
+
+WIDTH = 568
+HEIGHT = 668
+MARGIN = 10
+TOP_MARGIN = 100
+BOTTOM_MARGIN = 100
+LR_MARGIN = 100
+SQ_SIZE = (WIDTH - 4 * MARGIN - 2 * LR_MARGIN)//5
+
+GREEN = "#6aaa64"
+YELLOW = "#c9b458"
+GREY = "#787c7e"
+FONT = pygame.font.Font("UIAssets/FreeSansBold.otf", 50)
+    
+pygame.display.set_caption("WORDLE")
+SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
+
+if __name__ == '__main__': #Feedback: avoid writing long functions, instead break them into logic parts using smaller functions
+        SCREEN.fill("white")
+        guesses = []
+        userInput = ""
+        
+        while True:
+            y = TOP_MARGIN
+            for i in range(ROWS):
+                x = LR_MARGIN
+                for j in range(COLUMNS):
+                    square = pygame.Rect(x, y, SQ_SIZE, SQ_SIZE)
+                    pygame.draw.rect(SCREEN, GREY, square, width = 2)
+                    
+                    if i < len(guesses):
+                        pygame.draw.rect(SCREEN, GREY, square)
+                        letter = FONT.render(guesses[i][j], False, (255, 255, 255))
+                        surface = letter.get_rect(center = (x + SQ_SIZE//2, y + SQ_SIZE//2))
+                        SCREEN.blit(letter, surface)
+                        
+                    if i == len(guesses) and j < len(userInput):
+                        letter = FONT.render(userInput[j], False, GREY)
+                        surface = letter.get_rect(center = (x + SQ_SIZE//2, y + SQ_SIZE//2))
+                        SCREEN.blit(letter, surface)
+                        
+                    x += SQ_SIZE + MARGIN
+                y += SQ_SIZE + MARGIN
+                
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_BACKSPACE:
+                        userInput = userInput[:-1]
+                        
+                    elif event.key == pygame.K_RETURN:
+                        if len(userInput) == COLUMNS:
+                            guesses.append(userInput)
+                            userInput = ""
+                    else:
+                        if len(guesses) < ROWS:
+                            userInput += event.unicode.upper()
+                            
+            
+            pygame.display.flip()

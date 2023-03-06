@@ -1,0 +1,32 @@
+Assign1: Due 11:59PM CT February 24
+
+***Please review the top part of ../hw1/hw1.txt***
+***Your chance of success greatly increases if you start very early. Your chance of failure increases if you start late. Please use as many reviews as you possibly can.***
+
+Using Test First Development (no code without test first) let's implement the problem designed in hw2. Feel free to evolve that design and use judgment to make changes based on the improved understanding and learning. You are not required to use any of the design idea or languages you mentioned in hw2, apply decisions based on your renewed learnings.
+
+Please take small steps and ask for frequent reviews.
+
+First start with a tests list (tests.txt) and a canary test. Implement at most two more tests and minimum code to make those tests to pass. This is a great first step to complete and ask for a review.
+
+After completing the assignment (and only after) let's answer the following questions:
+
+1. What did you learn mainly in this assignment?
+
+This assignment taught us much about Test Driven Development (TDD), Single Responsibility Single, and how both influence software development. TDD leads us through the development cycle in small steps by individually implementing a program's minor functionalities. Specifically, the first process of TDD is to implement the test case, after which we code just enough to pass the test; lastly, we work on new test cases until the test case requires further implementation on the logic side. Following the process has shown us that it ensures confidence in publishing new code or rewriting old code because the test cases will indicate whether our program still functions properly. The cycle completes when the program as a whole consists of an organized set of functions performing specific tasks. In general, the approach in developing programs minimizes software entropy as we could add more functionality to the program without having to go back and refactor the code. 
+
+On the other hand, with SRP, we ensure that each function in our program is responsible for only one task; as such, SRP is closely tied to functional programming as we prepare our starting condition through other functions. One advantage we saw with SRP is that it significantly helps reduce vertical code clutter by ensuring the code executes in a minimal number of lines. However, since we have only started implementing SRP into our software practices, understanding the code's functionality is challenging, specifically when multiple conditions are grouped in one or two lines of code. Despite the inconvenience, we still agree to continue utilizing SRP to see how it affects our long-term coding skills.
+
+During our software development cycle, we also realized that our original UML design had changed significantly. Even though the basic classes remain the same, we have added multiple new classes and functions to create the end application. This shows us that the while the original design was a great guideline at the start of the cycle if it is not necessary anymore, we should not continue utilizing it.
+
+2. How is the current design different, if at all, from the strategic design created in hw2?
+
+Our current application has grown significantly more from the original UML design we had at the start of the development cycle. In our initial design from HW2, we only had three functions for the class driving the logic and three for the GUI. We drafted the designs in HW2 with the basis that we could implement all the functionality needed in those three functions. However, as we continue to build and design the application through the Test Driven Development (TFD) style, we have added many new functions to handle the application logic and UI. Although the general concepts of the three classes within our original design remain, their usage and implementation have changed. 
+
+Out of the two designs, we collectively prefer the new design implemented in this assignment much more as we split up a lot of the functionality across seven functions. The code is more concise and more accessible to understand than its imperative style counterpart. We also learned that while the original design was a good guideline, we should not follow it if it stopped making sense.
+
+3. Were there any surprises or things you did not expect along the way? Any particular problem faced, things you had to tackle that you did not expect beforehand?
+
+We did not expect the amount of tests that we would need to implement for our logic class and we had expected the development of the program to be much faster. In the beginning we had to refactor a lot of code to fit the functional style and ensure that we were respecting SRP. Nevertheless, we appreciate the methodology we had to use for developing this game, it is important for a program to have strong foundational code such that we minimize software entropy and can add more functionality at ease. 
+
+We also had not expected to face issues with cyclomatic complexity and code coverage, these issues unexpectedly came up when writing the logic for the game and took a lot of refactoring to fix, ultimately the cause of these issues was our eagerness to immediately write in an imperative style.

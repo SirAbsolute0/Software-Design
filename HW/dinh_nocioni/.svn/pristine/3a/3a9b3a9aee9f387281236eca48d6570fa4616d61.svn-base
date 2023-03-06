@@ -1,0 +1,28 @@
+Assign1: Due 11:59PM CT February 24
+
+***Please review the top part of ../hw1/hw1.txt***
+***Your chance of success greatly increases if you start very early. Your chance of failure increases if you start late. Please use as many reviews as you possibly can.***
+
+Using Test First Development (no code without test first) let's implement the problem designed in hw2. Feel free to evolve that design and use judgment to make changes based on the improved understanding and learning. You are not required to use any of the design idea or languages you mentioned in hw2, apply decisions based on your renewed learnings.
+
+Please take small steps and ask for frequent reviews.
+
+First start with a tests list (tests.txt) and a canary test. Implement at most two more tests and minimum code to make those tests to pass. This is a great first step to complete and ask for a review.
+
+After completing the assignment (and only after) let's answer the following questions:
+
+1. What did you learn mainly in this assignment?
+
+In this assignment we learnt a lot about how Test First Development leads us to develop our program in small steps by keeping implementing the smaller functionalities of a program individually. Through SRP (single-responsibility principle) we ensure that each function in our program is responsible for only one task, as such SRP is closely tied to functional programming as we prepare our starting condition through other functions. 
+
+We also found it very valuable to increment our testing in small parts, we would introduce 1 or 2 test cases and write minimal code to meet these tests. Once implemented we would introduce more test cases and the cycle completes until the program as a whole consists of an organized set of functions performing specific tasks (SRP). This approach in developing programs minimizes software entropy as we were able to add more functionality to the program without having to go back and refactor the code. 
+
+2. How is the current design different, if at all, from the strategic design created in hw2?
+
+In our initial design from HW2, we only had 3 functions for the class driving the logic and 3 functions for the GUI. We drafted the designs in HW2 with the basis that we could implement all the functionality needed in those 3 functions. However, I prefer the new design that was implemented in this assignment much more as we split up a lot of the functionality across 7 functions; The code is concise and much easier to understand as opposed to its imperative style counterpart. 
+
+3. Were there any surprises or things you did not expect along the way? Any particular problem faced, things you had to tackle that you did not expect beforehand?
+
+I did not expect the amount of tests that we would need to implement for our logic class and I had expected the development of the program to be much faster. In the beginning we had to refactor a lot of code to fit the functional style and ensure that we were respecting SRP. Nevertheless, I appreciate the methodology we had to use for developing this game, it is important for a program to have strong foundational code such that we minimize software entropy and can add more functionality at ease. 
+
+I also had not expected to face issues with cyclomatic complexity and code coverage, these issues unexpectedly came up when writing the logic for the game and took a lot of refactoring to fix, ultimately the cause of these issues was our eagerness to immediately write in an imperative style.

@@ -1,0 +1,328 @@
+[Reviewed 02/22/23 07:14 AM MST]
+synopsis: please avoid magic numbers
+
+details: 
+
+Please see suggestions in files.
+
+Did not find a Guess button.
+
+Let's also start on the response to questions in assign1.txt.
+
+------------------------------------------------------------------------------
+[Reviewed 02/21/23 07:06 AM MST]
+synopsis~: avoid long functions
+
+details: 
+
+Please see suggestions in files.
+
+paver ui
+
+python .\src\wordleUI.py
+.../Python: can't open file '...assign1/.srcwordleUI.py': [Errno 2] No such file or directory
+
+Backslash \ only works on windows and not on other Operating Systems.
+
+Let's do a quick review after these changes. Please modify the requestReview.txt file and check it in as soon as you are ready and I will do a review well before the next scheduled review cycle.
+
+------------------------------------------------------------------------------
+[Reviewed 02/20/23 15:00 PM MST]
+synopsis: good so far
+
+details: 
+
+Good so far. Please see suggestions in files.
+
+Let's incrementally create a GUI at this time.
+Please create a build task to display the GUI from the build automation:
+When 
+paver
+is run, execute the tests.
+
+when
+paver ui
+is run, execute the GUI
+
+Let's take small steps here and review frequently.
+
+Please exclude the UI code from test coverage.
+
+Display six rows with the first row enabled. Guess button should be disabled.
+
+Need the ability to type a word and have it appear in the first row. Then pressing the Guess button should show the color coded response and enable the next row.
+
+------------------------------------------------------------------------------
+[Reviewed 02/20/23 13:20 PM MST]
+synopsis~: SRP
+
+details: 
+
+Please see suggestions in files.
+
+------------------------------------------------------------------------------
+[Reviewed 02/19/23 17:52 PM MST]
+synopsis~:  feedback notes from previous review still in files
+
+details: 
+
+Please see this email
+
+https://groups.google.com/g/uhcss23sd/c/p7CwDkkN5FA/m/edyVJp1RAAAJ
+
+Feedback from previous review are still in the files. Please address, remove those feedback notes from the files. After that, please update the reviews request file for a quick review.
+
+Also, please remove any commented out stuff.
+
+------------------------------------------------------------------------------
+[Reviewed 02/19/23 13:59 PM MST]
+synopsis~: let's refactor and move forward
+
+details: 
+
+Please see suggestions in files.
+
+------------------------------------------------------------------------------
+[Reviewed 02/19/23 04:55 AM MST]
+synopsis~: SRP, one step at a time, especially as we start in a new direction
+
+details: 
+
+Please see suggestions in files.
+
+Let's do a quick review after these changes. Please modify the requestReview.txt file and check it in as soon as you are ready and I will do a review well before the next scheduled review cycle.
+
+------------------------------------------------------------------------------
+[Reviewed 02/18/23 11:53 AM MST]
+synopsis~: let's take the next step
+
+details: 
+
+ Nice work on taking the next step. We will rework the design a bit.
+ -play first attempt with winning guess
+  We will design a play function so it takes three parameters:
+  1. A target
+  2. A guess
+  3. Number of the attempt
+  
+  It will return the number of attempts so far, array/list of Responses, game status (win, loss, or in progress), and message for the win, loss, or empty
+
+For this first test we will call play("FAVOR", "FAVOR", 0)
+The response should be:
+1 for number of attempts
+[EXACT, EXACT, EXACT, EXACT, EXACT] for response
+WIN for game status
+"Amazing" for the message
+
+------------------------------------------------------------------------------
+[Reviewed 02/18/23 05:21 AM MST]
+synopsis~: red or yellow in code coverage
+
+details:
+
+Please take a look at the code coverage and make sure the coverage shows 100%.
+After fixing the coverage (or ask for help if you need), please ask for review.
+
+------------------------------------------------------------------------------
+[Reviewed 02/17/23 14:07 PM MST]
+synopsis: let's proceed to the next step
+
+details: 
+
+Let's think of the next step. Please don't write a lot of code at this point. Write one test and minimum code for that next step. Then ask for a review. We can see if we are heading in a good direction and if so we can then proceed. Otherwise, we can change direction more easily without having written too much code. Please remember to list the test for the next step in tests.txt.
+
+Please remember, one test (just one), and as minimum code as possible, so we can see if this is a direction we want to go or change.
+
+------------------------------------------------------------------------------
+[Reviewed 02/17/23 06:53 AM MST]
+synopsis~: let's use functional style
+
+details: 
+
+Please see suggestions in files.
+
+Let's do a quick review after these changes. Please modify the requestReview.txt file and check it in as soon as you are ready and I will do a review well before the next scheduled review cycle.
+
+------------------------------------------------------------------------------
+[Reviewed 02/16/23 22:11 PM MST]
+synopsis: functional style approach
+
+details: 
+
+Here is a pseudocode for the problem, using functional style and without any explicit mutation:
+
+tally(target, guess) {
+  return guess.split('')
+    .reduce((response, letter, i) => response append tallyForPosition(i, target, guess), []);
+}
+
+function tallyForPosition(position, target, guess) {
+  if(target[position] === guess[position]) {
+    return EXACT;
+  }
+  
+  letterAtPosition = guess[position];
+
+  positionalMatches = countPositionalMatches(target, guess, letterAtPosition);
+  nonPositionalOccurrencesInTarget = countNumberOfOccurrenceeUntilPosition(WORD_SIZE - 1, target, letterAtPosition) - positionalMatches;
+    
+  numberOfOccurancesInGuessUntilPosition = countNumberOfOccurrenceeUntilPosition(position, guess, letterAtPosition);
+    
+  if(nonPositionalOccurrencesInTarget >= numberOfOccurancesInGuessUntilPosition) {
+    return EXISTS;
+  }
+    
+  return NO_MATCH;
+}
+
+function countPositionalMatches(target, guess, letter) {
+  return target.split('')
+    .filter((ch, i) => target[i] === guess[i])
+    .filter(ch => ch === letter)
+    .length;
+}
+
+function countNumberOfOccurrenceeUntilPosition(position, word, letter) {
+  matches = word.substring(0, position + 1).match(new RegExp(letter, 'g'));
+  
+  return matches ? matches.length : 0;
+}
+
+
+Hope that helps.
+
+
+------------------------------------------------------------------------------
+[Reviewed 02/16/23 15:19 PM MST]
+synopsis~: let's refactor
+
+details: 
+
+Please see suggestions in files.
+
+------------------------------------------------------------------------------
+[Reviewed 02/16/23 04:56 AM MST]
+synopsis~: build failing, please do not update reviews request when build fails
+
+details:
+
+Please don't update the requestReview.txt when the build is not passing. Instead drop an email asking for help if you need suggestions on how to fix. Once the build passes, please update the review request file for a quick review.
+
+------------------------------------------------------------------------------
+[Reviewed 02/15/23 20:55 PM MST]
+synopsis: let's check the tests
+
+details: 
+
+Please see suggestions in files.
+
+------------------------------------------------------------------------------
+[Reviewed 02/15/23 16:04 PM MST]
+synopsis: let's use exception
+
+details: 
+
+Please see suggestions in files.
+
+------------------------------------------------------------------------------
+[Reviewed 02/15/23 13:55 PM MST]
+synopsis: test should not include the actual code
+
+details: 
+
+Please see suggestions in files.
+
+------------------------------------------------------------------------------
+[Reviewed 02/15/23 11:53 AM MST]
+synopsis~: string to enum
+
+details: 
+
+Please see suggestions in files.
+
+Let's do a quick review after these changes. Please modify the requestReview.txt file and check it in as soon as you are ready and I will do a review well before the next scheduled review cycle.
+
+------------------------------------------------------------------------------
+[Reviewed 02/15/23 11:28 AM MST]
+synopsis~: let the code reveal intentions
+
+details: 
+
+Please see suggestions in files.
+
+Let's do a quick review after these changes. Please modify the requestReview.txt file and check it in as soon as you are ready and I will do a review well before the next scheduled review cycle.
+
+------------------------------------------------------------------------------
+[Reviewed 02/15/23 04:14 AM MST]
+synopsis~: not much progress since the previous review
+
+details: 
+
+Most of the code has not addressed the feedback from the previous review. The #Feedback: notes were removed, but the feedbacks were not addressed. So, repeating most of that again in this review.
+
+Please see suggestions in files.
+
+Let's do a quick review after these changes. Please modify the requestReview.txt file and check it in as soon as you are ready and I will do a review well before the next scheduled review cycle.
+------------------------------------------------------------------------------
+[Reviewed 02/14/23 06:21 AM MST]
+synopsis~: YAGNI and code should reveal intentions
+
+details: 
+
+Please see suggestions in files.
+
+Let's do a quick review after these changes. Please modify the requestReview.txt file and check it in as soon as you are ready and I will do a review well before the next scheduled review cycle.
+
+------------------------------------------------------------------------------
+[Reviewed 02/13/23 03:41 AM MST]
+synopsis~: let's get the directory structure in place
+
+details: 
+
+Please delete test_.py.
+
+Please see tests.txt for some tests to write.
+
+Please use the files I have provided as a starting point.
+
+Please write one or two tests and minimum code for those tests and ask for a review.
+
+Let's do a quick review after these changes. Please modify the requestReview.txt file and check it in as soon as you are ready and I will do a review well before the next scheduled review cycle.
+
+A CI build has been setup for your project.
+You can see files related to this under assign1.
+
+How does this work?
+When you check in code, the CI build machine wakes up, fetches the latest 
+version of your code, and runs the file build.sh that is under your repository (above assign1). That file in turn runs the build scripts in your assign1 directory.
+
+In case you missed it, please read:
+<https://groups.google.com/g/uhcss23sd/c/2zkxY4s_-C4/m/feookVEEAQAJ>
+
+Also, please keep an eye on code coverage. To view the code coverage, please 
+run the build using the following command (do not click or double click, 
+instead open the command prompt, cd to your assign1 directory, and then run 
+from there).
+
+paver
+Then take a look at the file (using a browser):
+htmlcov/index.html
+
+
+------------------------------------------------------------------------------
+[Reviewed 02/12/23 04:19 AM MST]
+synopsis~: let's start with a canary test
+
+details: 
+
+Let's start with a canary test - assert true is true.
+
+Please write code in appropriate files with proper language baed extensions.
+
+In tests.txt only list the tests, one line at a time. No code, no additional details in that file.
+
+Let us write the canary test and may be one more test, minimum code for that one test, and then do a quick review.
+
+Let's do a quick review after these changes. Please modify the requestReview.txt file and check it in as soon as you are ready and I will do a review well before the next scheduled review cycle.
+
+------------------------------------------------------------------------------
