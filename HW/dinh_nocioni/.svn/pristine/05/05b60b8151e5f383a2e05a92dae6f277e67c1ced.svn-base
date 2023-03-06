@@ -82,20 +82,17 @@ class WordleTests(unittest.TestCase):
                   play("FAVOR", guess, attempt)
 
 
-  def test_play_with_correct_spelling(self):
+  def test_spellCheck(self):
       def is_spelling_correct(word):
           is_spelling_correct.called_with = word
           return True
 
-      response = [[{"attempts": 1, "response": [EXACT, EXACT, EXACT, EXACT, EXACT], "status": WIN, "message": "Amazing"}, "FAVOR", 0]] 
-      
+      response = [[{"attempts": 1, "response": [EXACT, EXACT, EXACT, EXACT, EXACT], "status": WIN, "message": "Amazing"}, "FAVOR", 0]]
       for test in response:
           response, guess, attempt = test
           with self.subTest():
             self.assertEqual(response, play("FAVOR", guess, attempt, is_spelling_correct(guess)))
-      
-      with self.subTest():
-          self.assertEqual("FAVOR", is_spelling_correct.called_with)
+            self.assertEqual("FAVOR", is_spelling_correct.called_with)
         
 if __name__ == '__main__': 
   unittest.main()

@@ -1,6 +1,7 @@
 import unittest
-from src.wordle import tally, play, Match, Status
-
+import sys
+import os
+from src.wordle import tally, message, play, Match, Status
 
 EXACT = Match.EXACT
 EXISTS = Match.EXISTS
@@ -81,21 +82,24 @@ class WordleTests(unittest.TestCase):
               with self.assertRaises(response):
                   play("FAVOR", guess, attempt)
 
+#Feedback: missing the tests mentioned in tests.txt.
 
-  def test_play_with_correct_spelling(self):
-      def is_spelling_correct(word):
-          is_spelling_correct.called_with = word
-          return True
+#Feedback: let's pass an additional argument to play. Let that argument be a lambda that takes a 
+#word and returns true. In the test, after call to play, let us verify that the lambda was called.
+#in the declaration of the play function, let us make this new last parameter as a default parameter
+#with a lambda that takes a word and returns true.
 
-      response = [[{"attempts": 1, "response": [EXACT, EXACT, EXACT, EXACT, EXACT], "status": WIN, "message": "Amazing"}, "FAVOR", 0]] 
-      
-      for test in response:
-          response, guess, attempt = test
-          with self.subTest():
-            self.assertEqual(response, play("FAVOR", guess, attempt, is_spelling_correct(guess)))
-      
-      with self.subTest():
-          self.assertEqual("FAVOR", is_spelling_correct.called_with)
-        
+#within the test
+# def is_spelling_correct(word):
+#   is_spelling_correct.called_with = word
+#   return True
+#
+#call play with "FAVOR", "FAVOR", 0, is_spelling_correct
+#
+#then verify the result of play is as expected
+#then assert that is_spelling_correct.called_with is equal to "FAVOR"
+
+
+              
 if __name__ == '__main__': 
   unittest.main()

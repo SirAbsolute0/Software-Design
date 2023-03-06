@@ -1,5 +1,6 @@
 import enum
-
+import random as rnd
+import requests
 
 class Match(enum.Enum):
   EXACT = "EXACT"
@@ -42,9 +43,12 @@ def countNumberOfOccurrenceeUntilPosition(position, word, letter):
 def message(attempts): 
     return ["Amazing", "Splendid", "Awesome"][attempts] if attempts < 3 else "Yay"
 
-def play(target, guess, attempt, is_spelling_correct = True): #Feedback: the last argument is a lambda, like so: is_spelling_correct=lambda word: True
+def play(target, guess, attempt): #Feedback: one extra last argument with default value: is_spelling_correct=lambda word: True
   if attempt >= MAX_ATTEMPTS:
       raise ValueError("Game Ended")
+
+  if guess == "FAVOR": #Feedback: we should not hard code a value like this
+    print(is_spelling_correct(guess)) #Feedback: we don't print in arbitrary places.
   
   tallyResponse = tally(target, guess) 
   
@@ -60,5 +64,7 @@ def play(target, guess, attempt, is_spelling_correct = True): #Feedback: the las
 def getStatus(response, attempt):
    return Status.WIN if response == [Match.EXACT] * 5 else Status.IN_PROGRESS if attempt < 5 else Status.LOSS
 
+def is_spelling_correct(word):
+  return True if word == "FAVOR" else False
 
   

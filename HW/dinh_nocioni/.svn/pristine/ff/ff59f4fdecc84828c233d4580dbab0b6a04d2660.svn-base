@@ -42,7 +42,7 @@ def countNumberOfOccurrenceeUntilPosition(position, word, letter):
 def message(attempts): 
     return ["Amazing", "Splendid", "Awesome"][attempts] if attempts < 3 else "Yay"
 
-def play(target, guess, attempt, is_spelling_correct = True): #Feedback: the last argument is a lambda, like so: is_spelling_correct=lambda word: True
+def play(target, guess, attempt, is_spelling_correct = True):
   if attempt >= MAX_ATTEMPTS:
       raise ValueError("Game Ended")
   
