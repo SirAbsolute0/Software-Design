@@ -1,0 +1,14 @@
+def fibonacci(position):
+    if(position < 0):
+        raise ValueError("Position must be a positive integer") 
+    
+    previous = 1
+    current = 1
+    fib = current
+    for i in range(position - 1):
+        fib = previous + current
+        previous = current
+        current = fib
+        
+    return fib
+

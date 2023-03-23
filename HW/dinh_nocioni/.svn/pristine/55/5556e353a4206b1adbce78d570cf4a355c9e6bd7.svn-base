@@ -1,0 +1,16 @@
+import requests
+import re
+
+def getResponse():
+    URL = "https://agilec.cs.uh.edu/words"
+
+    return requests.get(URL).text
+
+def parse(response):
+    wordList = re.sub(r'[^\w\s]', '', response).split() #Feedback: a blank line after this line, please
+    if not all(len(i) == 5 for i in wordList):
+        raise ValueError("Not a word list")
+
+    return wordList
+
+

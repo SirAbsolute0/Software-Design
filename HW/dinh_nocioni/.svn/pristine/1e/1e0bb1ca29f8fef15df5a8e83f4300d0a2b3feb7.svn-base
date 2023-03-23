@@ -1,0 +1,32 @@
+import requests
+import re
+import random as rnd
+
+
+def getResponse():
+    URL = "https://agilec.cs.uh.edu/words"
+
+    return requests.get(URL).text
+
+def parse(response): #Feedback: let's make the body of this code more intuitive and easier to understand
+    list_without_punctuation = re.sub(r'[^\w\s]', '', response).split()
+    wordList = [i for i in list_without_punctuation if is_valid_word(i)] #Feedback: in the previous review - do not use types as part of variable names
+    
+    if len(wordList) == 1:
+        raise ValueError("Not a word list")
+    
+    return wordList
+
+def is_valid_word(word): #Feedback: please remove
+    return len(word) == 5 and word.isupper()
+
+def get_a_random_word_given_a_seed(seed, wordList): #Feedback: this implementation will not give different words if the seed passed in is the same
+    rnd.seed = seed
+
+    return rnd.choice(wordList)
+
+def get_a_random_word(): #Feedback: we can reduce the number of lines of code in this function by merging the lines. For seed we can use time.time()
+    response = getResponse()
+    wordList = parse(response)
+    
+    return get_a_random_word_given_a_seed(rnd.randint(0, 10000), wordList)

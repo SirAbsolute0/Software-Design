@@ -1,0 +1,35 @@
+import requests
+import re
+import random as rnd
+import time
+
+def getResponse():
+    URL = "https://agilec.cs.uh.edu/words"
+    return requests.get(URL).text
+
+def parse(response):
+    response = response.strip() #Feedback: it is not a good idea to change the parameter given to a function
+    
+    if not (response[0] == '[' and response[-1] == ']'):
+        raise ValueError("Not a word list")
+
+    response = response[1:-1].replace(' ', '').split(',') #Feedback: return from this line
+
+    return [i for i in response if i.strip()] #Feedback: we don't need the for
+
+
+def get_a_random_word_given_a_seed(seed, words):
+    if not hasattr(get_a_random_word_given_a_seed, "seed"):
+        get_a_random_word_given_a_seed.seed = seed
+#Feedback: we can merge these two if into one        
+    if get_a_random_word_given_a_seed.seed != seed: 
+        get_a_random_word_given_a_seed.seed = seed
+        rnd.seed(get_a_random_word_given_a_seed.seed)
+    return rnd.choice(words)
+
+def get_a_random_word():
+    word = get_a_random_word_given_a_seed(time.time(), parse(getResponse())) #Feedback: a blank line after this line, please
+    if len(word) != 5:
+        raise ValueError("Word is not 5 characters long")
+    
+    return word.upper()

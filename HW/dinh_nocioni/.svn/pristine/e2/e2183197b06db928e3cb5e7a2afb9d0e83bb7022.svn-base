@@ -1,0 +1,122 @@
+[Reviewed 03/06/23 08:13 AM CET]
+synopsis~:  feedback notes from previous review still in files
+
+details: 
+
+Please see this email
+
+https://groups.google.com/g/uhcss23sd/c/p7CwDkkN5FA/m/edyVJp1RAAAJ
+
+Feedback from previous review are still in the files. Please address, remove those feedback notes from the files. After that, please update the reviews request file for a quick review.
+
+------------------------------------------------------------------------------
+[Reviewed 03/06/23 06:46 AM CET]
+synopsis~: let's rework the test
+
+details: 
+
+Please see suggestions in files.
+
+Let's do a quick review after these changes. Please modify the requestReview.txt file and check it in as soon as you are ready and I will do a review well before the next scheduled review cycle.
+
+------------------------------------------------------------------------------
+[Reviewed 03/06/23 04:36 AM CET]
+synopsis~: let's work on the test
+
+details: 
+
+Please see suggestions in files.
+
+Let's do a quick review after these changes. Please modify the requestReview.txt file and check it in as soon as you are ready and I will do a review well before the next scheduled review cycle.
+
+------------------------------------------------------------------------------
+[Reviewed 03/04/23 12:50 PM CST]
+synopsis~: build failing, please do not update reviews request when build fails
+
+details:
+
+Please don't update the requestReview.txt when the build is not passing. Instead drop an email asking for help if you need suggestions on how to fix. Once the build passes, please update the review request file for a quick review.
+
+------------------------------------------------------------------------------
+[Reviewed 03/04/23 12:11 PM CST]
+synopsis~: Let's rework the test
+
+details: 
+
+-play with correct spelling
+
+
+Let's focus on the test mentioned in tests.txt.
+
+-play with correct spelling
+For this test we will pass "FAVOR" for target and "FAVOR" for guess to play, with attempt 0. The play will access a mock that will return true for is_spelling_correct("FAVOR"). The play will then return a response of all EXACT, attempts = 1, status of WIN, etc. The test should check that the mock was called with FAVOR.
+
+------------------------------------------------------------------------------
+[Reviewed 03/04/23 03:37 AM MST]
+synopsis~: just one test to see the direction we are taking
+
+details: 
+
+Not five, just one test, only one single test. We write a test, minimum code, so we can see if we are in the right direction or we need to change.
+
+Please place only one test in tests.txt, please implement that one test minimally (no parametrization for that), and absolutely minimum code for that one test.
+
+Let's do a quick review after these changes. Please modify the requestReview.txt file and check it in as soon as you are ready and I will do a review well before the next scheduled review cycle.
+
+------------------------------------------------------------------------------
+[Reviewed 03/03/23 04:07 AM MST]
+synopsis~: let's change directions
+
+details: 
+
+We want to start with the most interesting and useful feature to the least interesting. For the give problem the most interesting is checking the spelling, the least, getting a random word. We will start with checking the spelling. Let's write one test for that.
+
+Let's do a quick review after these changes. Please modify the requestReview.txt file and check it in as soon as you are ready and I will do a review well before the next scheduled review cycle.
+
+------------------------------------------------------------------------------
+[Reviewed 03/02/23 05:08 AM MST]
+synopsis~:  feedback notes from previous review still in files
+
+details: 
+
+Please see this email
+
+https://groups.google.com/g/uhcss23sd/c/p7CwDkkN5FA/m/edyVJp1RAAAJ
+
+Feedback from previous review are still in the files. Please address, remove those feedback notes from the files. After that, please update the reviews request file for a quick review.
+
+------------------------------------------------------------------------------
+[Reviewed 02/27/23 04:33 AM CST]
+synopsis~: Let's take the first step
+
+details: 
+
+Please see suggestions in files.
+
+Let's take the first small step for the new features.
+
+------------------------------------------------------------------------------
+[Reviewed 02/26/23 06:49 AM CST]
+synopsis~: please remove radonui
+
+details: 
+
+Please remove radon ui task. Please leave the radon task as is to run through the complexity of code in src.
+
+After entering RIVER, hit enter. Nothing happened. Both enter and press of the Guess button should have the same effect.
+
+Let's take the first small step for the new features. One test and miniumum code for it.
+
+------------------------------------------------------------------------------
+[Reviewed 02/25/23 17:32 PM CST]
+synopsis~: a few things to improve
+
+details: 
+
+When the UI pops up, we need to see a Guess button that is disabled. When a row is filled let the button be enabled.
+
+Please do not exclude UI from radon.
+
+Let's do a quick review after these changes. Please modify the requestReview.txt file and check it in as soon as you are ready and I will do a review well before the next scheduled review cycle.
+
+------------------------------------------------------------------------------

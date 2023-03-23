@@ -1,0 +1,29 @@
+import requests
+import re
+import random as rnd
+import time
+SEED = 0
+
+def getResponse():
+    URL = "https://agilec.cs.uh.edu/words"
+
+    return requests.get(URL).text
+
+def parse(response): 
+    words_without_punctuation = re.sub(r'[^\w\s]', '', response).split()
+    words = [word for word in words_without_punctuation] 
+    
+    if len(words) == 1:
+        raise ValueError("Not a word list")
+    
+    return words
+
+def get_a_random_word_given_a_seed(seed_given, words):
+    global SEED
+    if SEED != seed_given: 
+        SEED = seed_given
+        rnd.seed(SEED)
+    return rnd.choice(words)
+
+def get_a_random_word():  
+    return get_a_random_word_given_a_seed(time.time(), parse(getResponse()))

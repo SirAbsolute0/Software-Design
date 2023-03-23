@@ -1,0 +1,61 @@
+import unittest
+from unittest.mock import Mock
+from src.wordle import play, Match, Status
+from src.spellChecker import getResponse
+
+
+EXACT = Match.EXACT
+EXISTS = Match.EXISTS
+NO_MATCH = Match.NO_MATCH
+
+WIN = Status.WIN
+IN_PROGRESS = Status.IN_PROGRESS
+LOSS = Status.LOSS
+WRONG_SPELLING = Status.WRONG_SPELLING
+
+class SpellCheckerTests(unittest.TestCase):
+  
+  def test_canary(self): #Feedback: in the video I talked about a client who wrote a canary test in each of the test suites
+    self.assertTrue(True)
+
+  def test_play_with_correct_spelling(self):
+      is_spelling_correct = Mock(return_value = True)
+    
+      expected = {"attempts": 1, "response": [EXACT, EXACT, EXACT, EXACT, EXACT], "status": WIN, "message": "Amazing"}
+      
+      self.assertEqual(expected, play("FAVOR", "FAVOR", 0, is_spelling_correct))
+      is_spelling_correct.assert_called_with("FAVOR")
+      
+  def test_play_with_another_correct_spelling(self):
+      is_spelling_correct = Mock(return_value = True)
+
+      expected = {"attempts": 1, "response": [NO_MATCH, NO_MATCH, EXACT, NO_MATCH, EXACT], "status": IN_PROGRESS, "message": ""}      
+
+      self.assertEqual(expected, play("FAVOR", "RIVER", 0, is_spelling_correct))
+      is_spelling_correct.assert_called_with("RIVER")
+                
+  def test_play_with_incorrect_spelling(self):
+      is_spelling_correct = Mock(return_value = False)
+    
+      expected = {"attempts": 0, "response": "", "status": WRONG_SPELLING, "message": "Wrong Spelling"}
+
+      self.assertEqual(expected, play("FAVOR", "FAVOR", 0, is_spelling_correct))    
+      is_spelling_correct.assert_called_with("FAVOR")
+      
+  def test_play_with_another_incorrect_spelling(self):
+      is_spelling_correct = Mock(return_value = False)
+
+      expected = {"attempts": 1, "response": "", "status": WRONG_SPELLING, "message": "Wrong Spelling"}
+
+      self.assertEqual(expected, play("FAVOR", "RIVER", 1, is_spelling_correct))
+      is_spelling_correct.assert_called_with("RIVER")
+
+#Feedback: we wrote the above tests in the test_wordle.py and I had no comments about them because that is where they belonged. I mentioned that the test below should not be in test_wordle.py since that is related to talking to the service and not related to play.
+
+#The above tests should be in test_wordle.py where we wrote initially and not in this file.s
+
+  def test_getResponse(self):
+      self.assertTrue(len(getResponse("FAVOR")) > 0)
+      
+if __name__ == '__main__': 
+  unittest.main()

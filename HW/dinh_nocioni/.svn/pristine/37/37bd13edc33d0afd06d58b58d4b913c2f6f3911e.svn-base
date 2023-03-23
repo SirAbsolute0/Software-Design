@@ -1,0 +1,33 @@
+import requests
+import re
+import random as rnd
+
+
+def getResponse():
+    URL = "https://agilec.cs.uh.edu/words"
+
+    return requests.get(URL).text
+
+def parse(response):
+    wordList = re.sub(r'[^\w\s]', '', response).split()
+    if not all(len(i) == 5 for i in wordList) or len(wordList) == 1:
+        raise ValueError("Not a word list")
+    
+    return wordList
+
+def get_a_random_word_given_a_seed(seed, wordList):
+    rnd.seed = seed
+    return rnd.sample(wordList, 1)
+
+def get_a_random_word(getResponse = lambda : True, parse = lambda response: True, get_a_random_word_given_a_seed = lambda seed, wordList : True):
+    response = getResponse()
+    wordList = parse(response)
+    word = get_a_random_word_given_a_seed(rnd.int, wordList)
+    
+    return word
+
+
+    
+    
+
+

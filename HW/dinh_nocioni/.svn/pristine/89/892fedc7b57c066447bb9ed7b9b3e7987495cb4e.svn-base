@@ -1,0 +1,10 @@
+import enum
+import requests
+
+class Words(enum.Enum):
+    link = "https://agilec.cs.uh.edu/words"
+    file = requests.get(link)
+    wordLibrary = file.text
+    
+def spellCheck(word):
+    return str(Words.wordLibrary)

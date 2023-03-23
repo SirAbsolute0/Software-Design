@@ -1,0 +1,9 @@
+xcanary test
+
+ximperative fibonacci for position 0
+ximperative fibonacci for position 1
+ximperative fibonacci for position 2
+ximperative fibonacci for position 5
+ximperative fibonacci for position 10
+ximperative fibonacci for position 50
+ximperative fibonacci raises exception for position -1

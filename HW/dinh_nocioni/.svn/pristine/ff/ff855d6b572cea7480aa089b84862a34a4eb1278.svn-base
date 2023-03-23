@@ -1,0 +1,15 @@
+import unittest
+from src.spellChecker import getResponse, parse
+
+class SpellCheckerTests(unittest.TestCase):
+
+  def test_getResponse(self):
+      self.assertTrue(len(getResponse("FAVOR")) > 0)
+      
+  def test_parse(self):
+      self.assertTrue(parse("true"))
+      #Feedback: we should not place multiple independent asserts in one test like this. Either two tests or parameterized subTests
+      self.assertFalse(parse("false"))
+      
+if __name__ == '__main__': 
+  unittest.main()

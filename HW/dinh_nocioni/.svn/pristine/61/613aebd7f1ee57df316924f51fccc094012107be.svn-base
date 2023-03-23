@@ -1,0 +1,23 @@
+import unittest
+from unittest.mock import Mock
+from src.spellChecker import getResponse, parse
+
+class SpellCheckerTests(unittest.TestCase):
+
+  def test_getResponse(self):
+      self.assertTrue(len(getResponse("FAVOR")) > 0)
+      
+  def test_parse(self):
+      with self.subTest():
+          self.assertTrue(parse("true"))
+          self.assertFalse(parse("false"))
+          
+  def test_is_spelling_correct(self):
+    with self.subTest():
+         self.assertTrue(len(getResponse("FAVOR")) > 0)
+         self.assertTrue(parse("true"))
+         
+    #with self.assertRaises(ValueError):getResponse("TZSEQ")
+     
+if __name__ == '__main__': 
+  unittest.main()

@@ -1,0 +1,13 @@
+import requests
+
+def getResponse(word):
+    URL = f"http://agilec.cs.uh.edu/spell?check={word}"
+    response = requests.get(URL).text
+    if len(response) > 0:
+        return response
+    else:
+        raise ValueError("Exception Raise")
+
+def parse(response):
+    return True if response == "true" else False
+
