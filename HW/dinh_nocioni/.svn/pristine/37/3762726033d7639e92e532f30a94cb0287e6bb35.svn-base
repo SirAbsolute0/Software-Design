@@ -1,0 +1,10 @@
+from src.fibonacci import validation_position
+
+@validation_position
+def fibonacci_imperative(position): #Feedback: fibonacci instead of fibonacci_imperative
+    current = previous = 1
+    
+    for _ in range(position - 1):  
+        current, previous = current + previous, current
+        
+    return current

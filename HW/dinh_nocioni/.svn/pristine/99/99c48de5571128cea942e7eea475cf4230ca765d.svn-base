@@ -1,0 +1,9 @@
+from src.fibonacci import validation_position
+from functools import lru_cache
+from src.fibonacci_recursion import fibonacci_recursion
+
+@validation_position #Feedback: no need
+@lru_cache(maxsize=None) #Feedback: no need for maxsize
+def fibonacci_memoized(position): #Feedback: fibonacci instead of fibonacci_recursion
+    return 1 if position < 2 else fibonacci_recursion(position, lambda position: fibonacci_memoized(position))
+    #Feedback: fibonacci instead of lambda position: fibonacci_memoized(position)

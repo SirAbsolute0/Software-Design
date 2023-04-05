@@ -1,0 +1,12 @@
+import unittest
+from src.fibonacci_imperative import fibonacci_imperative
+from test_fibonacci import FibonacciTests
+
+class FibonacciImperativeTests(FibonacciTests, unittest.TestCase):
+  
+  def fibonacci_implementation(self):
+    return fibonacci_imperative
+  
+if __name__ == '__main__': 
+  unittest.main()
+

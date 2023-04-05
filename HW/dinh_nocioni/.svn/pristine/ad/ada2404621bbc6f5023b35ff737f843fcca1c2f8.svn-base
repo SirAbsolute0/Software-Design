@@ -1,0 +1,12 @@
+import unittest
+from src.price_finder import find_lowest_price_and_vendor
+
+class PriceFinderTests(unittest.TestCase):
+    
+    def test_canary(self):
+        self.assertTrue(True)
+
+    def test_find_lowest_price_and_vendor(self):
+        response = ("No price", [])
+
+        self.assertEqual(find_lowest_price_and_vendor(0), response)

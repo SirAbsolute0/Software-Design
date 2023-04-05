@@ -1,0 +1,6 @@
+from functools import lru_cache
+from src.fibonacci_recursion import fibonacci
+
+@lru_cache()
+def fibonacci_memoized(position): 
+    return 1 if 0 < position < 2 else fibonacci(position, lambda position: fibonacci_memoized(position))

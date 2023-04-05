@@ -1,0 +1,9 @@
+from src.fibonacci import validation_position
+
+@validation_position
+def fibonacci_recursion(position, fib_func = None): #Feedback: fibonacci_function instead of fib_func
+    fib_func = fib_func if fib_func else fibonacci_recursion
+    
+    return 1 if position < 2 else fib_func(position - 1) + fib_func(position - 2)
+
+#Feedback: we can name fibonacci_recursion as fibonacci

@@ -1,0 +1,13 @@
+import unittest
+from src.fibonacci_memoized import fibonacci_memoized
+from test_fibonacci import FibonacciTests
+
+#Feedback: this test may actually hide any issues with performance test. For now, please remove "FibonacciTests, ". We can add it later once we are done with verifying performance.
+class FibonacciMemoizedTests(FibonacciTests, unittest.TestCase):
+  
+  def fibonacci_implementation(self):
+    return fibonacci_memoized
+  
+if __name__ == '__main__': 
+  unittest.main()
+

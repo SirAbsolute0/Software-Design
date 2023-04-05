@@ -10,11 +10,9 @@ def getResponse():
 def parse(response):
     if not (response[0] == '[' and response[-1] == ']'):
         raise ValueError("Not a word list")
-        
-    return response[1:-1].replace(' ', '').replace(',', ' ').split(',')
-    #return response
 
     return response[1:-1].replace(' ', '').replace(',', ' ').split()
+
 
 def get_a_random_word_given_a_seed(seed, words):
     if not hasattr(get_a_random_word_given_a_seed, "seed") or get_a_random_word_given_a_seed.seed != seed:

@@ -1,8 +1,0 @@
-def checkPosition(position):
-    if(position < 0):
-        raise ValueError("Position must be a positive integer")
-    
-def fibonacci(position):
-    checkPosition(position)
-    return 1 if position <= 1 else fibonacci(position - 1) + fibonacci(position - 2)
-

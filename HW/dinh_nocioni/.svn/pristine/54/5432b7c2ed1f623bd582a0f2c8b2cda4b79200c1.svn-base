@@ -1,0 +1,33 @@
+xcanary test
+
+ximperative fibonacci for position 0
+ximperative fibonacci for position 1
+ximperative fibonacci for position 2
+ximperative fibonacci for position 5
+ximperative fibonacci for position 10
+ximperative fibonacci for position 30
+ximperative fibonacci raises exception for position -1
+
+xfunctional fibonacci for position 0
+xfunctional fibonacci for position 1
+xfunctional fibonacci for position 2
+xfunctional fibonacci for position 5
+xfunctional fibonacci for position 10
+xfunctional fibonacci for position 30
+xfunctional fibonacci raises exception for position -1
+
+xrecursion fibonacci for position 0
+xrecursion fibonacci for position 1
+xrecursion fibonacci for position 2
+xrecursion fibonacci for position 5
+xrecursion fibonacci for position 10
+xrecursion fibonacci for position 30
+xrecursion fibonacci raises exception for position -1
+
+xmemoized fibonacci for position 0
+xmemoized fibonacci for position 1
+xmemoized fibonacci for position 2
+xmemoized fibonacci for position 5
+xmemoized fibonacci for position 10
+xmemoized fibonacci for position 30
+xmemoized fibonacci raises exception for position -1

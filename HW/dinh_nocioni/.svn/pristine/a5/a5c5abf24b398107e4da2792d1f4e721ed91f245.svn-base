@@ -1,0 +1,7 @@
+from src.fibonacci import validation_position
+
+@validation_position
+def fibonacci(position, fibonacci_function = None):
+    fibonacci_function = fibonacci_function if fibonacci_function else fibonacci
+    
+    return 1 if position < 2 else fibonacci_function(position - 1) + fibonacci_function(position - 2)

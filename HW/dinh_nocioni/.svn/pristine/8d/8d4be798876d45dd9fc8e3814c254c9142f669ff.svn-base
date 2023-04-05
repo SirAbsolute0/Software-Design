@@ -1,0 +1,37 @@
+Assign4: Due 11:59PM CT April 14
+
+***Please review the top part of ../hw1/hw1.txt***
+***Your chance of success greatly increases if you start very early. Your chance of failure increases if you start late. Please use as many reviews as you possibly can.***
+
+
+We've been asked to build part of a travel booking application that will help a user get the best price for renting a car. The first version will only provide price for one type of car, at one location, so we don't have to concern ourselves with the car type or location at this time.
+
+We will assume that different renters will provide different web based API to get the prices. For the sake of simplicity we will have code for different vendors/renters return their name and a random price for rental per day.
+
+We want to design the program in a way that if new rental companies are added or existing companies are removed, the program will require no modification to accommodate the change. 
+
+If a request for price fails, the program will simply ignore the failure and continue to work with renters that do provide a rate.
+
+The program will ask the user for the number of days they want to rent. It will then print the per day price and the total price (not including tax, etc.), and the renter/vendor offering that lowest price among the vendors.
+
+We will design the program with a few example vendors: Avis, Budget, Dollar. After completing the program, see how adding a new vendor or removing an existing vendor works.
+
+
+
+After completing the coding part, please answer the following:
+
+1. What design principles did you use in this assignment? Discuss.
+
+YOUR RESPONSE GOES HERE
+
+2. What design patterns did you use in this assignment? Discuss.
+
+YOUR RESPONSE GOES HERE
+
+3. What are the key strengths and weaknesses of the design? Discuss.
+
+YOUR RESPONSE GOES HERE
+
+4. Any surprises or things that you did not expect or learned specifically in this assignment?
+
+YOUR RESPONSE GOES HERE

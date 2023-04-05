@@ -1,0 +1,25 @@
+import time
+import unittest
+from src.fibonacci_recursion import fibonacci as fibonacci_recursive
+from src.fibonacci_memoized import fibonacci as fibonacci_memoized
+
+class PerformanceTests(unittest.TestCase):
+
+    def test_canary(self):
+        self.assertTrue(True)
+
+    def test_performance_memoized_against_recursion(self):
+        start = time.time()
+        fibonacci_recursive(30)
+        end = time.time()
+        recursion_time = end - start
+
+        start = time.time()
+        fibonacci_memoized(30)
+        end = time.time()
+        memoized_time = end - start
+
+        self.assertTrue(memoized_time * 10 < recursion_time)
+
+        
+        

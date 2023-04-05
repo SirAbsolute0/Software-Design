@@ -1,6 +1,7 @@
 import unittest
 from src.wordPicker import getResponse, parse, get_a_random_word_given_a_seed, get_a_random_word
 from unittest.mock import patch
+import time
 
 
 class WordPickerTests(unittest.TestCase):

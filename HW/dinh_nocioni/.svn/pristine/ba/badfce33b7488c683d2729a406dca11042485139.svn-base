@@ -1,0 +1,15 @@
+import unittest
+from src.price_finder import find_lowest_price_and_vendor
+
+class PriceFinderTests(unittest.TestCase):
+    
+    def test_canary(self):
+        self.assertTrue(True)
+
+    def test_find_lowest_price_and_vendor(self):
+        response = ("No price", []) #Feedback: what does [] mean?
+
+        self.assertEqual(find_lowest_price_and_vendor(0), response)
+        #Feedback: what is the reason to pass 0? Would it be better to have at least a few days in rental?
+        #What does the response mean? Let's make the intent very clear, unambiguous, obvious that we can't do much since we have no vendors.
+        

@@ -1,6 +1,0 @@
-import requests
-
-URL = 'http://agilec.cs.uh.edu/spell?check='
-
-def getResponse(word):
-    return requests.get(URL + word).text
