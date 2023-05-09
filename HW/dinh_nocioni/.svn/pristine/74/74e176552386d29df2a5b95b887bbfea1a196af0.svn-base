@@ -1,0 +1,19 @@
+#Feedback: does it raise exception?
+def vendor_call_raises_exception(vendor): #Feedback: vendor_service instead of vendor
+    try:
+        return vendor()
+    except Exception:
+        return False #Feedback: pass instead of return False
+    
+
+def find_lowest_price_and_vendor(num_of_days, vendors=[]): #Feedback: vendor_price_services=[]
+    filtered_vendors = list(filter(bool, list(map(vendor_call_raises_exception, vendors))))
+
+    if len(filtered_vendors) == 0:
+        raise ValueError("No Vendor to Provide Service")
+    
+    vendor_name, price_per_day = sorted(filtered_vendors, key=lambda vendor: vendor[1])[0] 
+
+    return {'price_per_day': price_per_day,
+            'total_price': price_per_day * num_of_days,
+            'vendor_name': vendor_name}

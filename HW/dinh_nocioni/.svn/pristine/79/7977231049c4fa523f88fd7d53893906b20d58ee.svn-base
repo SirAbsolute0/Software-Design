@@ -1,0 +1,49 @@
+import unittest
+from src.price_finder import find_lowest_price_and_vendor
+
+
+
+class PriceFinderTests(unittest.TestCase):
+    
+    def test_canary(self):
+        self.assertTrue(True)
+
+    def test_find_lowest_price_and_vendor_with_no_vendor(self):
+        self.assertRaisesRegex(ValueError, "No Vendor to Provide Service", find_lowest_price_and_vendor, 2)
+        
+    def test_find_lowest_price_and_vendor_with_one_vendor(self):
+        vendors = [lambda: ("Vendor1", 30)]
+        
+        response = {'price_per_day': 30,
+                    'total_price': 30,
+                    'vendor_name': "Vendor1"}
+        
+        self.assertEqual(find_lowest_price_and_vendor(1, vendors), response)
+
+    def test_find_lowest_price_and_vendor_with_one_vendor_for_three_days(self):
+        vendors = [lambda: ("Vendor1", 30)]
+        
+        response = {'price_per_day': 30,
+                    'total_price': 90,
+                    'vendor_name': "Vendor1"}
+        
+        self.assertEqual(find_lowest_price_and_vendor(3, vendors), response)
+        
+    def test_find_lowest_price_and_vendor_with_multiple_vendors(self):
+        vendors = [[lambda: ("Vendor1", 30),
+                    lambda: ("Vendor2", 28)],
+                   
+                   [lambda: ("Vendor1", 28),
+                    lambda: ("Vendor2", 30)]]
+        
+        responses = [{'price_per_day': 28,
+                      'total_price': 28,
+                      'vendor_name': "Vendor2"},
+
+                     {'price_per_day': 28,
+                      'total_price': 28,
+                      'vendor_name': "Vendor1"}]
+
+        vendor_responses = list(map(lambda vendor: find_lowest_price_and_vendor(1, vendor), vendors))
+        self.assertTrue(all(response == expected_response for response, expected_response in zip(vendor_responses, responses)))
+

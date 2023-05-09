@@ -1,0 +1,22 @@
+import unittest
+from src.find_prime_numbers import is_prime, get_prime_numbers
+
+class FinalTests(unittest.TestCase):
+    def test_canary(self):
+        self.assertTrue(True)
+        
+    def test_is_prime(self):
+        self.assertTrue(is_prime(3))
+        self.assertFalse(is_prime(4))
+        
+    def test_get_prime_numbers(self):
+        responses = [[[2, 3, 5, 7, 11], 11],
+                     [[2, 3, 5, 7], 8]]
+        
+        for test in responses:
+              response, guess = test
+              with self.subTest():
+                self.assertEqual(response, get_prime_numbers(guess))
+                
+    def test_get_prime_numbers_with_large_range(self):
+        self.assertTrue(len(get_prime_numbers(10000000)) > 2)

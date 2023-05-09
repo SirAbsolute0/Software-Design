@@ -1,0 +1,27 @@
+import importlib
+
+VENDOR_FILE_DIRECTORY = "vendor"
+
+class VendorServicePlugin:
+    def get_name(self):
+        pass
+    
+    def get_price(self):
+        pass
+
+class VendorServiceRegistry:
+    def __init__(self):
+        self.plugins = []
+
+    def register_plugin(self, plugin: VendorServicePlugin):
+        self.plugins.append(plugin)
+
+    def get_services(self):
+        return [(plugin.get_name(), plugin.get_price()) for plugin in self.plugins]
+
+
+def discover_services():
+    vendor_services = VendorServiceRegistry()
+    for vendor_plugins in  
+    return vendor_services.get_services()
+

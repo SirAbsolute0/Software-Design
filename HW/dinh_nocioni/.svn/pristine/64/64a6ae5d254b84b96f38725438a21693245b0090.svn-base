@@ -1,0 +1,25 @@
+HW4 Due 11:59PM April 28
+
+***Please review the top part of ../hw1/hw1.txt***
+***There will be no reviews for this Homework***
+***Please remember to follow the things that were emphasized throughout this course on writing***
+***Please see the details in the requestReviews.txt file***
+
+Feel free to give answers collectively, and also if you want to, you can call out something specific to yourself different from your team member. Bring out your learnings and reflect on them here.
+
+1. What did you essentially learn in this course about design?
+                                
+Please provide individual responses to this question here (state your name and write in short paragraphs below that).
+
+Phuong Dinh:
+Throughout the course, I have learned about the importance of design in the software development cycle. Specifically, how applying design principles such as DRY, SRP, OCP, and many more, can significantly reduce the overall development time and increase software flexibility in the future.
+
+Before the course, my general conception of a design in software development was a static diagram of classes and functions used as a guideline when developing a program. While a design guideline has benefits, such as being a road map during development, I have always believed it unnecessary. Thus, I have always neglected to think about the design unless required. However, the course showed me design in software development is much more than a static diagram. It is a combination of principles, design patterns, and dynamic diagrams. Furthermore, software design brings numerous benefits besides being a road map.
+
+For example, utilizing the software design principles helps reduce clutter, increase code flow, make the code more flexible, document code, and ensure long-term manageability. In further detail, the DRY principle forces me to break my habit of copying and pasting code from one function to another. Thus, DRY reduces unnecessary cluttering throughout my code, making it easier to understand and follow. On the other hand, SRP shows me that a function does not need to be complex. On the contrary, an operation should be as simple as possible and only do what is required, nothing more. Anything not logically within the scope of the function name should be put in a separate function. SRP increases the code flow since my functions and classes are now adequately laid out with detailed naming scheme showing their purposes. TDD principle not only adds a new layer of confidence in my code but also acts as a documentation of how my code is through consistent unit testing. The unit tests will always notify me when a change I make in the future ripple through the code and affect a core functionality of the program. Therefore, I can confidently expand the program with new features without always needing to recheck previous work. TDD is a fantastic way to sustain the program's longevity; future developers can study the test cases to understand the code further.
+
+Overall, the design principles I have learned to appreciate in the course have multiple advantages, which include reducing clutter, improving flow, future-proof, and documenting a program code base. Aff of these advantages can reduce development hours in personal projects and potentially millions of dollars in large-scale professional software. Thus, I believe it is essential to continue utilizing these design principles in the future to increase overall code quality.
+
+2. What are some of the general guidelines you would follow when designing?
+
+Replace this with your response. Provide one collective response as a team.

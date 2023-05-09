@@ -1,0 +1,9 @@
+from src.dynamic_vendor_discovery import VendorServicePlugin
+import random as rnd
+
+class AvisServicePlugin(VendorServicePlugin):
+    def get_name(self):
+        return "Dollar"
+
+    def get_price(self):
+        return rnd.choice(22, None, Exception, ValueError)

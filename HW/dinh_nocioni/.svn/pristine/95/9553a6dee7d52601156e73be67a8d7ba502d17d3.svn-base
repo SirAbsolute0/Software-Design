@@ -1,0 +1,2 @@
+def find_lowest_price_and_vendor(num_of_days, vendors = list()): #Feedback: vendors unnecessary at this time in the design. Minimum code to make tests pass. number_of_days
+    raise ValueError("No Vendor to Provide Service")

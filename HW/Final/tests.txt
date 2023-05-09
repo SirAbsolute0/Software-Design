@@ -1,0 +1,10 @@
+Find prime numbers
+ 
+xcanary test
+
+xsieve_of_eratosthenes_method test using the algorithm to indetify prime in a list of numbers
+
+xget_prime_numbers test to get all prime numbers within the range from 2 to the desired number (including the desired number)
+xget_prime_numbers to get all prime numbers within the range from 2 to the desired number (not including the desired number)
+
+xget_prime_numbers_with_large_range to assure function does not take too long

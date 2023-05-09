@@ -1,0 +1,8 @@
+from src.dynamic_vendor_discovery import VendorServicePlugin
+
+class AvisServicePlugin(VendorServicePlugin):
+    def get_name(self) -> str:
+        return "Avis"
+
+    def get_price(self) -> int:
+        return 20

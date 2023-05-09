@@ -1,0 +1,6 @@
+class VendorServicePlugin:
+    def get_name(self):
+        pass
+    
+    def get_price(self):
+        pass

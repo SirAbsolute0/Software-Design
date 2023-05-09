@@ -1,0 +1,31 @@
+PriceFinder
+
+xcanary test
+xprice when no vendors are available
+xprice for one day rental when one vendor is available
+
+xprice for three days rental when one vendor is available
+xprice for one days when two vendors are available, second with better price
+xprice for one days when two vendors are available, first with better price
+
+xprice for one day when three vendors are available, first with better price
+xprice for one day when three vendors are available, second with better price
+xprice for one day when three vendors are available, third with better price
+
+xprice for one day when three vendors are available, first one fails request, second has better price
+
+xprice for one day when three vendors are available, all failing request
+
+xprice for one day when three vendors are available, the first and the third have the same lower price than the second.
+
+xget all three example vendor services
+
+xadd new vendor and remove the newly added vendor. Afterwards verify that the new added vendor is not in the list.
+
+#Feedback: next test
+-add a vendor, get all vendors returns the newly added vendor. Then remove the vendor that was added and verify that get all vendors does not return the removed vendor
+
+
+Let's write a main program that asks the user for the number of days and prints the result. Let's write a run task to easily run the program.
+paver - runs test
+paver run - runs the program

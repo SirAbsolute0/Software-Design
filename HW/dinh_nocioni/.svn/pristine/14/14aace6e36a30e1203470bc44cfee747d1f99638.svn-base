@@ -1,0 +1,31 @@
+import importlib
+import glob
+import os
+
+VENDOR_FILE_DIRECTORY = "vendors"
+
+class VendorServiceRegistry: #Feedback: no need
+    def __init__(self):
+        self.plugins = []
+
+    def register_plugin(self, plugin):
+        self.plugins.append(plugin)
+
+    def get_services(self):
+        return [lambda : (plugin.get_name(), plugin.get_price()) for plugin in self.plugins]
+
+
+def discover_services():
+    vendor_services = VendorServiceRegistry() #Feedback: no need for this
+    
+    for vendor_file in glob.glob(VENDOR_FILE_DIRECTORY + "/*.py"):
+        module_name = os.path.basename(vendor_file)[:-3]
+        my_module = importlib.import_module(VENDOR_FILE_DIRECTORY + "." + module_name)
+        vendor_services.register_plugin(my_module.VendorServicePlugin())
+    
+    return vendor_services.get_services()
+
+#Feedback: unnecesssary complexity. 
+#discover_services() needs to import all the files from the VENDOR_FILE_DIRECTORY, get the functions
+#and return an list of them. No need for any classes to achieve this. There is no real 
+#registry or registration that is needed.

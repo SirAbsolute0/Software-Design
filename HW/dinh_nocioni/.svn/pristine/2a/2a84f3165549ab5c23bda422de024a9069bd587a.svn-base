@@ -1,0 +1,30 @@
+import importlib
+import glob
+import os
+from vendor_plugin_template import VendorServicePlugin
+
+VENDOR_FILE_DIRECTORY = os.listdir(os.path.abspath(os.path.join(os.getcwd(), '..', 'vendors')))
+
+class VendorServiceRegistry:
+    def __init__(self):
+        self.plugins = []
+
+    def register_plugin(self, plugin: VendorServicePlugin):
+        self.plugins.append(plugin)
+
+    def get_services(self):
+        return [lambda : (plugin.get_name(), plugin.get_price()) for plugin in self.plugins]
+
+
+def discover_services():
+    vendor_services = VendorServiceRegistry()
+    
+    for vendor_file in VENDOR_FILE_DIRECTORY:
+        module_name = os.path.splitext(vendor_file)[0]  
+        my_module = importlib.import_module(module_name)
+        vendor_services.register_plugin(my_module.Plugin())
+    
+    print(str(vendor_services.get_services()))
+    return vendor_services.get_services()
+
+discover_services()

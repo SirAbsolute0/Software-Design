@@ -1,0 +1,18 @@
+def get_vendor_price_ignore_exception(vendor_service): 
+    try:
+        return vendor_service()
+    except Exception:
+        pass 
+    
+def find_lowest_price_and_vendor(num_of_days, vendor_price_services=[]):
+    filtered_vendors = list(filter(lambda response: isinstance(response, tuple), list(map(get_vendor_price_ignore_exception, vendor_price_services))))
+    #Feedback: why are we filtering, that is what the name of the variable should tell. Not, how but why and what
+
+    if len(filtered_vendors) == 0:
+        raise ValueError("No Vendor to Provide Service")
+    
+    sorted_vendors_by_price = sorted(filtered_vendors, key=lambda vendor: vendor[1]) #Feedback: no need to sort
+    price_per_day = sorted_vendors_by_price[0][1]
+    
+    return {'price_per_day': price_per_day, 'total_price': price_per_day * num_of_days, 'vendor_names' : [vendor[0] for vendor in list(filter(lambda vendor: vendor[1] == price_per_day, sorted_vendors_by_price))]} #Feedback: this is hard to read. Let us split into variables and then assign values in the return so make it easier to see what is going on.
+    

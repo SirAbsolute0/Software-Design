@@ -1,0 +1,8 @@
+from vendor_plugin_template import VendorServicePlugin
+
+class Plugin(VendorServicePlugin):
+    def get_name(self):
+        return "Avis"
+
+    def get_price(self):
+        return 20

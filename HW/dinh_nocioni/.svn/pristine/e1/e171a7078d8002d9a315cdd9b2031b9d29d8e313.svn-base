@@ -1,0 +1,17 @@
+PriceFinder
+
+xcanary test
+xprice when no vendors are available
+xprice for one day rental when one vendor is available
+
+xprice for three days rental when one vendor is available
+xprice for one days when two vendors are available, second with better price
+xprice for one days when two vendors are available, first with better price
+
+-price for one day when three vendors are available, first with better price
+-price for one day when three vendors are available, second with better price
+-price for one day when three vendors are available, third with better price
+
+-price for one day when three vendors are available, first one fails request, second has better price
+
+-price for one day when three vendors are available, all failing request

@@ -1,0 +1,98 @@
+import unittest
+from src.price_finder import find_lowest_price_and_vendor
+
+
+
+class PriceFinderTests(unittest.TestCase):
+    
+    def test_canary(self):
+        self.assertTrue(True)
+
+    def test_find_lowest_price_and_vendor_with_no_vendor(self):
+        self.assertRaisesRegex(ValueError, "No Vendor to Provide Service", find_lowest_price_and_vendor, 2)
+        
+    def test_find_lowest_price_and_vendor_with_one_vendor(self):
+        vendors = [lambda: ("Vendor1", 30)]
+        
+        response = {'price_per_day': 30,
+                    'total_price': 30,
+                    'vendor_name': "Vendor1"}
+        
+        self.assertEqual(find_lowest_price_and_vendor(1, vendors), response)
+
+    def test_find_lowest_price_and_vendor_with_one_vendor_for_three_days(self):
+        vendors = [lambda: ("Vendor1", 30)]
+        
+        response = {'price_per_day': 30,
+                    'total_price': 90,
+                    'vendor_name': "Vendor1"}
+        
+        self.assertEqual(find_lowest_price_and_vendor(3, vendors), response)
+        
+    def test_find_lowest_price_and_vendor_with_multiple_vendors(self):
+        vendors = [[lambda: ("Vendor1", 30),
+                    lambda: ("Vendor2", 28)],
+                   
+                   [lambda: ("Vendor1", 28),
+                    lambda: ("Vendor2", 30)],
+                   
+                   [lambda: ("Vendor1", 28),
+                    lambda: ("Vendor2", 30),
+                    lambda: ("Vendor3", 69)],
+                   
+                   [lambda: ("Vendor1", 30),
+                    lambda: ("Vendor2", 28),
+                    lambda: ("Vendor3", 69)],
+                   
+                   [lambda: ("Vendor1", 69),
+                    lambda: ("Vendor2", 30),
+                    lambda: ("Vendor3", 28)],]
+        
+        responses = [{'price_per_day': 28,
+                      'total_price': 28,
+                      'vendor_name': "Vendor2"},
+
+                     {'price_per_day': 28,
+                      'total_price': 28,
+                      'vendor_name': "Vendor1"},
+                     
+                     {'price_per_day': 28,
+                      'total_price': 28,
+                      'vendor_name': "Vendor1"},
+                     
+                     {'price_per_day': 28,
+                      'total_price': 28,
+                      'vendor_name': "Vendor2"},
+                     
+                     {'price_per_day': 28,
+                      'total_price': 28,
+                      'vendor_name': "Vendor3"}]
+
+        #Feedback: if one assert fails then the following asserts do not run. We should not place independent asserts in the same test like this.
+        self.assertTrue(find_lowest_price_and_vendor(1, vendors[0]), responses[0])
+        self.assertTrue(find_lowest_price_and_vendor(1, vendors[1]), responses[1])
+        self.assertTrue(find_lowest_price_and_vendor(1, vendors[2]), responses[2])
+        self.assertTrue(find_lowest_price_and_vendor(1, vendors[3]), responses[3])
+        self.assertTrue(find_lowest_price_and_vendor(1, vendors[4]), responses[4])
+        
+        
+    def test_find_lowest_price_and_vendor_with_one_vendor_failing_request(self):
+        vendors = [[lambda: ("Vendor1", None),
+                    lambda: ("Vendor2", 28),
+                    lambda: ("Vendor3", 69)]]
+        
+        responses = [{'price_per_day': 28,
+                      'total_price': 28,
+                      'vendor_name': "Vendor2"}]
+
+        self.assertTrue(find_lowest_price_and_vendor(1, vendors[0]), responses[0])
+
+        
+    def test_find_lowest_price_and_vendor_with_all_vendors_failing_request(self):
+        vendors = [[lambda: ("Vendor1", None),
+                    lambda: ("Vendor2", None),
+                    lambda: ("Vendor3", None)]]
+        
+        self.assertRaisesRegex(ValueError, "No Vendor to Provide Service", find_lowest_price_and_vendor, [2, vendors])
+        
+

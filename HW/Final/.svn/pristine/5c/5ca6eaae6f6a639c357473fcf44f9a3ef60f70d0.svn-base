@@ -1,0 +1,10 @@
+import unittest
+from src.final import canary
+
+class FinalTests(unittest.TestCase):
+    def test_canary(self):
+        self.assertTrue(True)
+        
+    def test_canary_src(self):
+        self.assertTrue(canary())
+        

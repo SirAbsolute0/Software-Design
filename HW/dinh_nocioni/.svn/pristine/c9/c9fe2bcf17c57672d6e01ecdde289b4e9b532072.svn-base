@@ -1,0 +1,7 @@
+def discover_services():
+    return vendor_services
+
+vendor_services = [lambda: ("Avis", 20),
+                   lambda: ("Budget", 21), #Feedback: let this return a random value for a change
+                   lambda: ("Dollar", 22)] #Feedback: let this randomly fail for a change
+#Feedback: if we decide to add another vendor we have to change this file. Violation of OCP.

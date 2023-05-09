@@ -1,0 +1,9 @@
+import unittest
+from src.dynamic_vendor_discovery import discover_services
+
+class PriceFinderTests(unittest.TestCase):
+     
+     def test_discover_services(self):
+          self.assertTrue(all(callable(function) for function in discover_services()) 
+                          and len(discover_services()) >= 3) #Feedback: not a good idea to optimize with and, keep the separate so it is clear what we're trying to do. Don't try to overly optimize in tests.
+          

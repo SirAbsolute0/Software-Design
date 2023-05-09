@@ -1,0 +1,30 @@
+PriceFinder
+
+xcanary test
+xprice when no vendors are available
+xprice for one day rental when one vendor is available
+
+xprice for three days rental when one vendor is available
+xprice for one days when two vendors are available, second with better price
+xprice for one days when two vendors are available, first with better price
+
+xprice for one day when three vendors are available, first with better price
+xprice for one day when three vendors are available, second with better price
+xprice for one day when three vendors are available, third with better price
+
+xprice for one day when three vendors are available, first one fails request, second has better price
+
+xprice for one day when three vendors are available, all failing request
+
+xprice for one day when three vendors are available, the first and the third have the same lower price than the second.
+
+Dynamic Discovery:
+we have designed the core functionality to get the lower price details from different vendors.
+Next step, we want to discover different vendors that are available during runtime.
+Let's think of how we can design that. We want this to be dynamic, if we create new vendors, we don't want to change any code, but
+when the program is run, it will give us all the vendors that are available. Let's focus on designing a function that will return
+to us all the vendors (functions of course) that are available.
+
+xcheck new cheaper vendor at runtime 
+xcheck new expensive vendor at runtime
+xcheck new cheap vendor at runtime

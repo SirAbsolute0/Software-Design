@@ -1,0 +1,58 @@
+import unittest
+from unittest.mock import patch
+from src.price_finder import find_lowest_price_and_vendor
+from src.dynamic_vendor_discovery import add_vendors
+
+ADD_VENDOR_DIR = 'src.dynamic_vendor_discovery.add_vendors'
+
+class PriceFinderTests(unittest.TestCase):
+     @patch(ADD_VENDOR_DIR, add_vendors)
+     def test_check_new_cheaper_vendor_at_runtime(self):
+         if hasattr(add_vendors, 'vendor_price_services'):
+             delattr(add_vendors, 'vendor_price_services')
+             
+         initial_vendors = add_vendors([lambda: ("Vendor1", 26),
+                                        lambda: ("Vendor2", 30),
+                                        lambda: ("Vendor3", 28)])
+         
+         realtime_vendors = add_vendors([lambda: ("Vendor4", 12)])
+             
+         response = {'price_per_day': 12,
+                     'total_price': 12,
+                     'vendor_names': ["Vendor4"]}
+         
+         self.assertEqual(find_lowest_price_and_vendor(1, realtime_vendors), response) 
+
+     @patch(ADD_VENDOR_DIR, add_vendors)
+     def test_check_new_expensive_vendor_at_runtime(self):
+         if hasattr(add_vendors, 'vendor_price_services'):
+             delattr(add_vendors, 'vendor_price_services')
+             
+         initial_vendors = add_vendors([lambda: ("Vendor1", 26),
+                                        lambda: ("Vendor2", 30),
+                                        lambda: ("Vendor3", 28)])
+         
+         realtime_vendors = add_vendors([lambda: ("Vendor4", 36)])
+         
+         response = {'price_per_day': 26,
+                     'total_price': 26,
+                     'vendor_names': ["Vendor1"]}
+         
+         self.assertEqual(find_lowest_price_and_vendor(1, realtime_vendors), response) 
+
+     @patch(ADD_VENDOR_DIR, add_vendors)
+     def test_check_new_cheap_vendor_at_runtime(self):
+         if hasattr(add_vendors, 'vendor_price_services'):
+             delattr(add_vendors, 'vendor_price_services')
+             
+         initial_vendors = add_vendors([lambda: ("Vendor1", 26),
+                                        lambda: ("Vendor2", 30),
+                                        lambda: ("Vendor3", 28)])
+         
+         realtime_vendors = add_vendors([lambda: ("Vendor4", 26)])
+     
+         response = {'price_per_day': 26,
+                     'total_price': 26,
+                     'vendor_names': ["Vendor1", "Vendor4"]}
+         
+         self.assertEqual(find_lowest_price_and_vendor(1, realtime_vendors), response)

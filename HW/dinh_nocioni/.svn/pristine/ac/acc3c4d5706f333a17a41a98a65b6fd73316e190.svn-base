@@ -1,0 +1,7 @@
+def add_vendors(new_vendor_price_services = []):
+    if not hasattr(add_vendors, "vendor_price_services"):
+        add_vendors.vendor_price_services = new_vendor_price_services
+    else:
+        add_vendors.vendor_price_services.extend(new_vendor_price_services)
+
+    return add_vendors.vendor_price_services

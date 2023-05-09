@@ -1,0 +1,4 @@
+def find_lowest_price_and_vendor(num_of_days, vendors = list()): 
+    if len(vendors) == 0:
+        raise ValueError("No Vendor to Provide Service")
+    else: return 1

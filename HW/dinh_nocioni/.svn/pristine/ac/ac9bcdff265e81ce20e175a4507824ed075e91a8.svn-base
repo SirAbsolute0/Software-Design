@@ -1,0 +1,9 @@
+import random as rnd 
+
+class VendorServicePlugin():
+    def get_name(self):
+        return "Budget"
+
+    def get_price(self):
+        return rnd.randint(10, 30)
+        #Feedback: let's fail this call randomly for a change

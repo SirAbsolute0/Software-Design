@@ -1,0 +1,38 @@
+import unittest
+import glob
+import os
+from src.dynamic_vendor_discovery import discover_services
+from vendors.Avis import Vendor as Avis_vendor
+from vendors.Budget import Vendor as Budget_vendor
+from vendors.Dollar import Vendor as Dollar_vendor
+
+VENDOR_FILE_DIRECTORY = "vendors"
+REMOVE_VENDOR_FILE_DIRECTORY = "removed_vendor"
+class PriceFinderTests(unittest.TestCase):
+     
+    def test_discover_services(self):
+         self.assertTrue(all(callable(function) for function in discover_services())) 
+          #Feedback: not a good idea to optimize with and, keep the separate so it is clear 
+          #what we're trying to do. Don't try to overly optimize in tests.
+    
+    def test_discover_services_having_at_least_three_vendors(self):
+        self.assertTrue(len(discover_services()) >= 3)
+        
+    def test_discover_services_before_and_after_removing_one_vendor(self):
+
+        initial_vendors = [Avis_vendor(), Budget_vendor(), Dollar_vendor()]
+        
+        self.assertTrue(all(isinstance(vendor, (Avis_vendor, Budget_vendor, Dollar_vendor))) for vendor in initial_vendors)
+        
+        #print(glob.glob(VENDOR_FILE_DIRECTORY))
+        vendor_to_be_moved = os.path.join(VENDOR_FILE_DIRECTORY, 'Dollar.py')
+        vendor_moved_to = os.path.join(REMOVE_VENDOR_FILE_DIRECTORY, 'Dollar.py')
+        os.rename(vendor_to_be_moved, vendor_moved_to)
+        #for vendor_file in glob.glob(VENDOR_FILE_DIRECTORY):
+            #print(vendor_file)
+        os.rename(vendor_moved_to, vendor_to_be_moved)
+        updated_vendors = [Avis_vendor(), Budget_vendor()]
+        
+        
+        
+        

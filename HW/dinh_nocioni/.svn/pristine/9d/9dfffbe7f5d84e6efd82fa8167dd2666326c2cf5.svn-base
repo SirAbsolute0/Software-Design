@@ -1,0 +1,54 @@
+Assign4: Due 11:59PM CT April 14
+
+***Please review the top part of ../hw1/hw1.txt***
+***Your chance of success greatly increases if you start very early. Your chance of failure increases if you start late. Please use as many reviews as you possibly can.***
+
+
+We've been asked to build part of a travel booking application that will help a user get the best price for renting a car. The first version will only provide price for one type of car, at one location, so we don't have to concern ourselves with the car type or location at this time.
+
+We will assume that different renters will provide different web based API to get the prices. For the sake of simplicity we will have code for different vendors/renters return their name and a random price for rental per day.
+
+We want to design the program in a way that if new rental companies are added or existing companies are removed, the program will require no modification to accommodate the change. 
+
+If a request for price fails, the program will simply ignore the failure and continue to work with renters that do provide a rate.
+
+The program will ask the user for the number of days they want to rent. It will then print the per day price and the total price (not including tax, etc.), and the renter/vendor offering that lowest price among the vendors.
+
+We will design the program with a few example vendors: Avis, Budget, Dollar. After completing the program, see how adding a new vendor or removing an existing vendor works.
+
+
+
+After completing the coding part, please answer the following:
+
+1. What design principles did you use in this assignment? 
+
+For assignment 4, our group utilizes similar principles to the previous assignment 3, which are You Ain't Gonna Need It (YAGNI), Don't Repeat Yourself (DRY), and Single Responsibility Principle (SRP). In addition, we also apply the new Open/Close Principle (OCP) to our design to achieve minimally effective code.
+
+Like previous assignments, we utilize YAGNI throughout the development cycle by creating test cases and implementing minimal code to pass the tests. Thus, the core functionality of our software is constantly being tested after each new iteration. Following the DRY principle, we restrain from copying and pasting code and ensure our code does not overlap. If we ever need to call a similar function, we will utilize the decorator or import the function directly. The last principle we have utilized previously is SRP, which only allows a function or class in our program to handle one functionality. Additional functionality not within the scope defined by the function name will need an independent implementation. SRP helps the flow of our code and keeps cohesiveness high.
+
+OCP is the new principle we have to adhere to in assignment 4. Specifically, OCP states that software entities should be open for extension but closed for modification. The principle applies to a function in our program where we must dynamically add new vendors without changing the code implementation. Initially, with our hard-coded vendor design, we would need to add and remove vendors within the code base. However, we achieved the OCP principle after changing our approach to automatically importing vendor files from the vendors' folder.
+All in all, we have applied the four main software design principles in our program for assignment 4, which are YAGNI, DRY, SRP, and OCP. While challenging to apply, these principles have helped us ensure a minimal cohesive code design.
+
+2. What design patterns did you use in this assignment? 
+
+In assignment 4, we try implementing the Builder Design pattern to ensure the Open/Close Principle (OCP). 
+
+Specifically, during our initial method of adding new vendors, we hard-code the existing vendors into our code, after which we call a function to import the vendors. However, our approach violates OCP as every time we need to add or remove a vendor; we would need to go into the main source file and edit the vendor. 
+Therefore, we have to find an alternative solution to the problem. After studying the Builder pattern, we want to implement a similar approach by creating a VendorPlugin interface for vendors to follow. Using the interface, all our vendors will inherit from the interface pre-defined functions to get the name and the price. Specific changes from each vendor can be inherent separately and added as an additional function if needed. 
+
+3. What are the key strengths and weaknesses of the design? Discuss.
+
+Although we utilize the builder method initially to set up the dynamic vendor discovery method, we realize some of its advantages and disadvantages within our program. The benefits include flexibility and readability. Meanwhile, the penalties are increased complexity and increased development time.
+
+The builder design's first benefit is the implementation's flexible nature. We consider each vendor a builder, and each will return a pre-defined list of functions that follow a specific template. While each vendor can vary in implementation, they must follow one design template. The design helps us standardize the function name of each vendor so we can call the same set of functions within vendor discovery. Implementing this method call also helps us increase readability which is the second benefit of the design. Since each vendor inherits from an interface class and is located in a separate file, it is easy to understand each vendor's implementation and see their return. Moreover, they are all located in the same folder for easy access.
+
+On the other hand, the first downside of the builder design is the increased complexity, which is pointed out to us in the latest review. Specifically, we think the increase in complexity is because of the "Director" within the Builder design pattern. In our case, it is the VendorServiceRegistry class. Without the "Director," all the vendors can still be imported with their functions and will reduce the complexity. Increased complexity also leads to increase development time since it takes us quite a bit of time to implement a way to import all the vendors in a separate folder. We also try multiple ways to import a class to the "Director" correctly.
+
+Overall, while we do not implement the Builder design pattern in the final stage of our program, we still learn a lot from our initial implementation effort.
+
+4. Any surprises or things that you did not expect or learned specifically in this assignment?
+
+My teammate and I were each surprised by a different part of our design. For example, I was surprised at the implementation of the dynamic vendor discovery.
+ 
+At first, when I read about the prompt for dynamic vendor discovery, my mind instinctively thinks about threading. To be more precise, I wanted to program to have a second thread updating the vendor list every second. Thus, I spent a whole night trying to create a second thread and had a lot of difficulties calling the new thread from the test file. It was much more work than I had anticipated, especially testing it. However, after my teammate read the prompt, he changed my understanding of the prompt from trying to update every second automatically to updating only when a specific function is called. Since the method is accepted from the review, it seems his approach is correct and makes the code simpler. However, I am still surprised we did not have to utilize threading. 
+

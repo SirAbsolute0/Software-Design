@@ -1,0 +1,15 @@
+from price_finder import find_lowest_price_and_vendor
+
+def main():
+    number_of_days = int(input("Please enter the number of days for the car rental: "))
+    
+    while number_of_days <= 0:
+        number_of_days = int(input("Please enter an appropriate value: "))
+        
+    try: 
+        vendor_search_result = find_lowest_price_and_vendor(number_of_days)
+    except ValueError:
+        print("No Vendor to Provide Service")
+        
+if __name__ == "__main__":
+    main()

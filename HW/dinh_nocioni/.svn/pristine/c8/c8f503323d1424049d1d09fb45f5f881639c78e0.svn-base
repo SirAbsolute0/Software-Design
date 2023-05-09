@@ -1,0 +1,117 @@
+import unittest
+from unittest.mock import Mock
+from src.price_finder import find_lowest_price_and_vendor
+
+class PriceFinderTests(unittest.TestCase):
+    
+    def test_canary(self):
+        self.assertTrue(True)
+
+    def test_find_lowest_price_and_vendor_with_no_vendor(self):
+        self.assertRaisesRegex(ValueError, "No Vendor to Provide Service", find_lowest_price_and_vendor, 2)
+        
+    def test_find_lowest_price_and_vendor_with_one_vendor(self):
+        vendors = [lambda: ("Vendor1", 30)]
+        
+        response = {'price_per_day': 30,
+                    'total_price': 30,
+                    'vendor_name': "Vendor1"}
+        
+        self.assertEqual(find_lowest_price_and_vendor(1, vendors), response)
+
+    def test_find_lowest_price_and_vendor_with_one_vendor_for_three_days(self):
+        vendors = [lambda: ("Vendor1", 30)]
+        
+        response = {'price_per_day': 30,
+                    'total_price': 90,
+                    'vendor_name': "Vendor1"}
+        
+        self.assertEqual(find_lowest_price_and_vendor(3, vendors), response)
+        
+    def test_find_lowest_price_and_vendor_with_two_vendors_second_with_better_price(self):
+        vendors = [lambda: ("Vendor1", 30),
+                  lambda: ("Vendor2", 28)]
+
+        response = {'price_per_day': 28,
+                    'total_price': 28,
+                    'vendor_name': "Vendor2"}
+
+        self.assertTrue(find_lowest_price_and_vendor(1, vendors), response)
+
+    def test_find_lowest_price_and_vendor_with_two_vendors_first_with_better_price(self):
+        vendors = [lambda: ("Vendor1", 28),
+                   lambda: ("Vendor2", 30)]
+
+        response = {'price_per_day': 28,
+                    'total_price': 28,
+                    'vendor_name': "Vendor1"}
+
+        self.assertTrue(find_lowest_price_and_vendor(1, vendors), response)
+
+    def test_find_lowest_price_and_vendor_with_three_vendors_first_with_better_price(self):
+        vendors = [lambda: ("Vendor1", 28),
+                   lambda: ("Vendor2", 30),
+                   lambda: ("Vendor3", 69)]
+
+        response = {'price_per_day': 28,
+                    'total_price': 28,
+                    'vendor_name': "Vendor1"}
+
+        self.assertTrue(find_lowest_price_and_vendor(1, vendors), response)
+
+    def test_find_lowest_price_and_vendor_with_three_vendors_second_with_better_price(self):
+        vendors = [lambda: ("Vendor1", 30),
+                   lambda: ("Vendor2", 28),
+                   lambda: ("Vendor3", 69)]        
+
+        response = {'price_per_day': 28,
+                    'total_price': 28,
+                    'vendor_name': "Vendor2"}
+
+        self.assertTrue(find_lowest_price_and_vendor(1, vendors), response)
+
+    def test_find_lowest_price_and_vendor_with_three_vendors_third_with_better_price(self):
+        vendors = [lambda: ("Vendor1", 69),
+                   lambda: ("Vendor2", 30),
+                   lambda: ("Vendor3", 28)]
+
+        response = {'price_per_day': 28,
+                    'total_price': 28,
+                    'vendor_name': "Vendor3"}
+
+        self.assertTrue(find_lowest_price_and_vendor(1, vendors), response)
+        
+        
+    def test_find_lowest_price_and_vendor_with_one_vendor_failing_request(self):
+        mock_error = Mock(side_effect=Exception("Call to service failed"))
+        
+        vendors = [mock_error, 
+                   lambda: ("Vendor2", 28),
+                   lambda: ("Vendor3", 69)]
+        
+        response = {'price_per_day': 28,
+                      'total_price': 28,
+                      'vendor_name': "Vendor2"}
+
+        self.assertTrue(find_lowest_price_and_vendor(1, vendors), response)
+
+        
+    def test_find_lowest_price_and_vendor_with_all_vendors_failing_request(self):
+        mock_error = Mock(side_effect=Exception("Call to service failed"))
+        
+        vendors = [mock_error] * 3
+        
+        self.assertRaisesRegex(ValueError, "No Vendor to Provide Service", find_lowest_price_and_vendor, [2, vendors])
+
+
+    def test_find_lowest_price_and_vendor_for_first_and_third_vendor_offering_same_price(self):
+        vendors = [lambda: ("Vendor1", 26),
+                   lambda: ("Vendor2", 30),
+                   lambda: ("Vendor3", 26)]
+
+        response = {'price_per_day': 26,
+                    'total_price': 26,
+                    'vendor_name': "Vendor1"}
+
+        self.assertTrue(find_lowest_price_and_vendor(1, vendors), response)
+        #Feedback: we just got a complaint from Vendor3 folks that the application is favoring Vendor1. We better fix that before they call the trade commission.

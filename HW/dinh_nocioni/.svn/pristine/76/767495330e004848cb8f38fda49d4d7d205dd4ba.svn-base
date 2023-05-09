@@ -1,0 +1,9 @@
+from vendor_plugin_template import VendorServicePlugin
+import random as rnd
+
+class Plugin(VendorServicePlugin):
+    def get_name(self):
+        return "Dollar"
+
+    def get_price(self):
+        return rnd.choice([22, None, ValueError])

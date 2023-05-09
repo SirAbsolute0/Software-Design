@@ -1,0 +1,8 @@
+import unittest
+from src.dynamic_vendor_discovery import discover_services
+
+class PriceFinderTests(unittest.TestCase):
+     
+     def test_discover_services(self):
+          self.assertTrue(all(callable(function) for function in discover_services()))
+          #Feedback: we need to check that there were at least three

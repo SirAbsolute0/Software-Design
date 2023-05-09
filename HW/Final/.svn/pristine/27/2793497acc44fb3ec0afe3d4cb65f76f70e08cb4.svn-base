@@ -1,0 +1,8 @@
+def is_prime(last_number):
+    for number in range(2, int(last_number**0.5)+1):
+        if last_number % number == 0:
+            return False
+    return True
+
+def get_prime_numbers(final_number):
+    return list(filter(is_prime, range(2, final_number+1)))

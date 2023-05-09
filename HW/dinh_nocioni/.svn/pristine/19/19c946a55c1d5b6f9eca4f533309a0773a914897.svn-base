@@ -1,0 +1,25 @@
+import random as rnd
+
+def get_vendor_price_ignore_exception(vendor_service): 
+    try:
+        return vendor_service()
+    except Exception:
+        pass 
+    
+def lowest_price_vendor(filtered_vendors):
+    lowest_price = (sorted(filtered_vendors, key=lambda vendor: vendor[1])[0])[1]
+    lowest_price_vendors = list(filter(lambda vendor: vendor[1] == lowest_price, filtered_vendors))
+    
+    return rnd.choice(lowest_price_vendors)
+            
+def find_lowest_price_and_vendor(num_of_days, vendor_price_services=[]): 
+    filtered_vendors = list(filter(None, list(map(get_vendor_price_ignore_exception, vendor_price_services))))
+
+    if len(filtered_vendors) == 0:
+        raise ValueError("No Vendor to Provide Service")
+    
+    vendor_name, price_per_day = lowest_price_vendor(filtered_vendors)
+
+    return {'price_per_day': price_per_day,
+            'total_price': price_per_day * num_of_days,
+            'vendor_name': vendor_name}

@@ -1,0 +1,30 @@
+PriceFinder
+
+xcanary test
+xprice when no vendors are available
+xprice for one day rental when one vendor is available
+
+xprice for three days rental when one vendor is available
+xprice for one days when two vendors are available, second with better price
+xprice for one days when two vendors are available, first with better price
+
+xprice for one day when three vendors are available, first with better price
+xprice for one day when three vendors are available, second with better price
+xprice for one day when three vendors are available, third with better price
+
+xprice for one day when three vendors are available, first one fails request, second has better price
+
+xprice for one day when three vendors are available, all failing request
+
+xprice for one day when three vendors are available, the first and the third have the same lower price than the second.
+
+
+#Feedback: let's move the following
+xadd_vendor for dynamically adding cheaper vendor than existing list.
+xadd_vendor for dynamically adding vendor with the same price as cheapest from existing list.
+xadd_vendor for dynamically adding expensive vendor than existing list.
+
+#Feedback: instead write this one
+-get all vendor services
+We want to design a function that will not take any arguments. It returns a list of functions 
+for the three vendors mentioned as an example in the requirements (assign4.txt). We need to design in a way if more vendor services are added or removed, no code will have to change.

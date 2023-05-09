@@ -1,0 +1,25 @@
+def get_vendor_price_ignore_exception(vendor_service): 
+    try:
+        return vendor_service()
+    except Exception:
+        pass 
+    
+def lowest_price_vendors(filtered_vendors):
+    lowest_price = (sorted(filtered_vendors, key=lambda vendor: vendor[1])[0])[1]
+    lowest_price_vendors = list(filter(lambda vendor: vendor[1] == lowest_price, filtered_vendors))
+    
+    return lowest_price_vendors
+            
+def calculate_pricing(lowest_price_vendors, num_of_days):
+    vendors_pricing = list(map(lambda vendor: {'price_per_day': vendor[1], 'total_price': vendor[1] * num_of_days, 'vendor_name': vendor[0]}, lowest_price_vendors))
+    return vendors_pricing
+
+def find_lowest_price_and_vendor(num_of_days, vendor_price_services=[]): 
+    filtered_vendors = list(filter(None, list(map(get_vendor_price_ignore_exception, vendor_price_services))))
+
+    if len(filtered_vendors) == 0:
+        raise ValueError("No Vendor to Provide Service")
+    
+    pricing = calculate_pricing(lowest_price_vendors(filtered_vendors), num_of_days)
+
+    return pricing
